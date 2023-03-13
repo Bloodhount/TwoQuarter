@@ -13,13 +13,20 @@ namespace Asteroids
         [SerializeField] private float _force;
         [SerializeField] private Rigidbody2D _bullet;
         [SerializeField] private Transform _barrel;
-        private MoveTransform _moveTransform;
+        private Camera _camera;
+        private IMove _moveTransform;
+        private IRotation _rotation;
         private void Start()
         {
+            _camera = Camera.main;
             _moveTransform = new AccelerationMove(transform, _speed, _acceleration);
+            _rotation = new RotationShip(transform);
         }
         void Update()
         {
+            var direction = Input.mousePosition-_camera.WorldToScreenPoint(transform.position);
+            _rotation.Rotation(direction);
+
             _moveTransform.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
