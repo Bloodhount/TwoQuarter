@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Asteroids
 {
-
     internal sealed class Player : MonoBehaviour
     {
         [SerializeField] private float _speed;
@@ -14,34 +13,30 @@ namespace Asteroids
         [SerializeField] private Rigidbody2D _bullet;
         [SerializeField] private Transform _barrel;
         private Camera _camera;
-        private IMove _moveTransform;
-        private IRotation _rotation;
+        private Ship _ship;
+        //private IMove _moveTransform;
+        //private IRotation _rotation;
         private void Start()
         {
             _camera = Camera.main;
-            _moveTransform = new AccelerationMove(transform, _speed, _acceleration);
-            _rotation = new RotationShip(transform);
+            var _moveTransform = new AccelerationMove(transform, _speed, _acceleration);
+            var _rotation = new RotationShip(transform);
+            _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
         }
         void Update()
         {
-            var direction = Input.mousePosition-_camera.WorldToScreenPoint(transform.position);
-            _rotation.Rotation(direction);
+            var direction = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
 
-            _moveTransform.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
+            _ship.Rotation(direction);
+            _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                if (_moveTransform is AccelerationMove accelerationMove)
-                {
-                    accelerationMove.AddAcceleration();
-                }
+                _ship.AddAcceleration();
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                if (_moveTransform is AccelerationMove accelerationMove)
-                {
-                    accelerationMove.RemoveAcceleration();
-                }
+                _ship.RemoveAcceleration();
             }
             if (Input.GetButtonDown("Fire1"))
             {

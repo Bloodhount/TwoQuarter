@@ -4,11 +4,9 @@ using UnityEngine;
 
 namespace Asteroids
 {
-
-    internal class MoveTransform : IMove// MonoBehaviour
+    internal class MoveTransform : IMove
     {
         private readonly Transform _transform;
-        //private readonly float _speed;
         private Vector3 _move;
         public float Speed { get; protected set; }
         public MoveTransform(Transform transform, float speed)
@@ -22,6 +20,5 @@ namespace Asteroids
             _move.Set(horizontal * speed, vertical * speed, 0.0f);
             _transform.localPosition += _move;
         }
-
     }
 }
