@@ -25,6 +25,10 @@ namespace Asteroids
             _moveImplementation = move;
             _rotationImplementation = rotation;
         }
+        public void Move(float horizontal, float vertical)
+        {
+            _moveImplementation.Move(horizontal, vertical);
+        }
         public void Move(float horizontal, float vertical, float deltaTime)
         {
             _moveImplementation.Move(horizontal, vertical, deltaTime);

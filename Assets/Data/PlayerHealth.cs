@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float _hp;
+    [SerializeField] private int _hp;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (_hp <= 0)
+        if (_hp < 1)
         {
             Destroy(gameObject);
+            if (_hp < 0)
+            {
+                _hp = 0;
+            }
         }
         else
         {
