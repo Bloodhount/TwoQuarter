@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Asteroids.AccelerationMove" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Data\AccelerationMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asteroids.MoveTransform" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAQAIAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Data\MoveTransform.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Asteroids.Player" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAgACAAAAAAAAAAAYAAAAAAAAAABAAAASAAAAA=</HashCode>
+      <FileName>Assets\Data\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asteroids.RotationShip" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Data\RotationShip.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asteroids.Ship" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAQAAAAIAAAIAAQIAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Data\Ship.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.106" Collapsed="true" />
+  </Class>
+  <Class Name="PlayerHealth" Collapsed="true">
+    <Position X="1.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCAAAAAA=</HashCode>
+      <FileName>Assets\Data\PlayerHealth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Asteroids.IMove" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Data\IMove.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Asteroids.IRotation" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Data\IRotation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

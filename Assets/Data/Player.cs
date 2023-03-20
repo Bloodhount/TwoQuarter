@@ -8,19 +8,21 @@ namespace Asteroids
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
-        [SerializeField] private float _hp;
-        [SerializeField] private float _force;
-        [SerializeField] private Rigidbody2D _bullet;
-        [SerializeField] private Transform _barrel;
+        [SerializeField] private float _shootForce;
+        [SerializeField] private Rigidbody2D _bulletRigidbody;
+        [SerializeField] private Transform _startShotPosition;
         private Camera _camera;
         private Ship _ship;
-        //private IMove _moveTransform;
-        //private IRotation _rotation;
+        private PlayerShooting _playerShooting;
+        [SerializeField] private GameObject _bullet;
+
         private void Start()
         {
             _camera = Camera.main;
             var _moveTransform = new AccelerationMove(transform, _speed, _acceleration);
             var _rotation = new RotationShip(transform);
+            //_bulletRigidbody = FindObjectOfType<PlayerShooting>().GetComponent<Rigidbody2D>();
+            // var _instantiateBullet = new PlayerShooting();
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
         }
         void Update()
@@ -30,6 +32,11 @@ namespace Asteroids
             _ship.Rotation(direction);
             _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
 
+            PlayerInput();
+        }
+
+        private void PlayerInput()
+        {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 _ship.AddAcceleration();
@@ -40,20 +47,12 @@ namespace Asteroids
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                var temAmmunition = Instantiate(_bullet, _barrel.position, _barrel.rotation);
-                temAmmunition.AddForce(_barrel.up * _force);
-            }
-
-        }
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (_hp <= 0)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                _hp--;
+                //_bulletRigidbody = FindObjectOfType<PlayerShooting>().GetComponent<Rigidbody2D>();
+                // var temAmmunition = Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation);
+                // _playerShooting.Shoot(temAmmunition);
+                // _playerShooting.Shoot(_bullet);
+                var temAmmunition = Instantiate(_bulletRigidbody, _startShotPosition.position, _startShotPosition.rotation);
+                temAmmunition.AddForce(_startShotPosition.up * _shootForce);
             }
         }
     }
