@@ -17,14 +17,23 @@ namespace Asteroids
         private Ship _ship;
         private Rigidbody _playerRigidbody;
         private AccelerationMove _moveTransform;
+        //============================
+        [SerializeField] private int InitPrefabsCount = 3;
+        private BulletsPool _bulletsPool;
+
+        public void Init(GameObject pooledGameObject)
+        {
+            _bulletsPool = new BulletsPool(pooledGameObject, _startShotPosition, InitPrefabsCount);
+        }
+        //============================
         private void Start()
         {
             _camera = Camera.main;
             _playerRigidbody = GetComponent<Rigidbody>();
             _moveTransform = new AccelerationMove(_playerRigidbody, _speed, _acceleration);
-            //  var _moveTransform = new AccelerationMove(transform, _speed, _acceleration);
             var _rotation = new RotationShip(transform);
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
+
         }
         void Update()
         {
@@ -54,13 +63,23 @@ namespace Asteroids
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
+                Init(_bullet);
+            
+                var obj = _bulletsPool.Get(); 
+                var temAmmunition = obj.GetComponent<Rigidbody>();//
+                                                                  // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
+                temAmmunition.gameObject.SetActive(true);
                 temAmmunition.AddForce(_startShotPosition.up * _shootForce);
+                _bulletsPool.ReturnToPool(obj);
             }
         }
-        private void RbMove() 
+        private void RbMove()
         {
             _ship.Move(_inputDirHorizontal, _inputDirVertical);
         }
+        //private void OnDestroy()
+        //{
+        //    _bulletsPool.Dispose();
+        //}
     }
 }
