@@ -471,10 +471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 8
   _acceleration: 24
-  _shootForce: 44
+  _shootForce: 55
   _startShotPosition: {fileID: 573861362}
-  _bullet: {fileID: 8509095386530412970, guid: b9a0511231c18394db01a55b059eaa28, type: 3}
-  InitPrefabsCount: 3
 --- !u!4 &1209907384
 Transform:
   m_ObjectHideFlags: 0
@@ -602,8 +600,6 @@ MonoBehaviour:
   _acceleration: 10
   _shootForce: 0
   _startShotPosition: {fileID: 0}
-  _bullet: {fileID: 0}
-  InitPrefabsCount: 3
 --- !u!4 &1243864261
 Transform:
   m_ObjectHideFlags: 0
@@ -630,6 +626,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1563409630}
   - component: {fileID: 1563409629}
+  - component: {fileID: 1563409631}
+  - component: {fileID: 1563409632}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -657,13 +655,45 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563409628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09976345, y: 0, z: -6.0247993}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1563409631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563409628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a654819e51fccc64ea215cceedcd1680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolObjects: []
+  _prefab: {fileID: 8509095386530412970, guid: b9a0511231c18394db01a55b059eaa28, type: 3}
+  _startShotPosition: {fileID: 0}
+  _bulletAmount: 5
+--- !u!114 &1563409632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563409628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115ef42d61c91124bbb09017f1f19ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolObjects: []
+  _prefab: {fileID: 1318425729131330378, guid: 2e54fa248d8ee08469b8ec02e5ecacb0, type: 3}
+  _startPosition: {fileID: 1563409630}
+  _ObjectsAmount: 3
 --- !u!1 &1854460442
 GameObject:
   m_ObjectHideFlags: 0

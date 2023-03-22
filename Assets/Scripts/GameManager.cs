@@ -20,8 +20,8 @@ namespace Asteroids
             //enemy. CreateAsteroidEnemy(new Asteroid());
 
             // Enemy.CreateAsteroidEnemy(new EnemyHealth());
-            IEnemyFactory factory = new AsteroidFactory();
-            factory.Create(new EnemyHealth());
+            //IEnemyFactory factory = new AsteroidFactory();
+            //factory.Create(new EnemyHealth());
 
             //var obj = _bulletsPool.Get();
             //_bulletsPool.ReturnToPool(obj);

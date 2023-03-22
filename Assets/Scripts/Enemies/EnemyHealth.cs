@@ -23,7 +23,8 @@ namespace Asteroids
         }
         public override void Die()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            // Destroy(gameObject);
         }
         private void OnCollisionEnter(Collision collision)
         {

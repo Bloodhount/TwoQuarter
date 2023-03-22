@@ -12,18 +12,18 @@ namespace Asteroids
         private float _inputDirVertical, _inputDirHorizontal;
 
         [SerializeField] private Transform _startShotPosition;
-        [SerializeField] private GameObject _bullet;
+        // [SerializeField] private GameObject _bullet;
         private Camera _camera;
         private Ship _ship;
         private Rigidbody _playerRigidbody;
         private AccelerationMove _moveTransform;
         //============================
-        [SerializeField] private int InitPrefabsCount = 3;
+        // [SerializeField] private int _initPrefabsCount = 3;
         private BulletsPool _bulletsPool;
 
         public void Init(GameObject pooledGameObject)
         {
-            _bulletsPool = new BulletsPool(pooledGameObject, _startShotPosition, InitPrefabsCount);
+            // _bulletsPool = new BulletsPool(pooledGameObject, _startShotPosition, _initPrefabsCount);
         }
         //============================
         private void Start()
@@ -33,6 +33,8 @@ namespace Asteroids
             _moveTransform = new AccelerationMove(_playerRigidbody, _speed, _acceleration);
             var _rotation = new RotationShip(transform);
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
+                                                         //-------------------------
+                                                         // Init(_bullet);
 
         }
         void Update()
@@ -63,14 +65,44 @@ namespace Asteroids
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                Init(_bullet);
-            
-                var obj = _bulletsPool.Get(); 
-                var temAmmunition = obj.GetComponent<Rigidbody>();//
-                                                                  // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
-                temAmmunition.gameObject.SetActive(true);
-                temAmmunition.AddForce(_startShotPosition.up * _shootForce);
-                _bulletsPool.ReturnToPool(obj);
+                //Init(_bullet);
+
+                GameObject bullet = BulletsPool.instance.Get();
+                if (bullet != null)
+                {
+                    var temAmmunition = bullet.GetComponent<Rigidbody>();//
+                                                                         // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
+                    temAmmunition.gameObject.transform.position = _startShotPosition.position;
+                    temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    // temAmmunition.gameObject.transform.rotation = _startShotPosition.rotation;
+                    temAmmunition.gameObject.SetActive(true);
+                    temAmmunition.AddForce(_startShotPosition.up * _shootForce);
+                    bullet.GetComponent<Bullet>().S(); // StartCoroutine(StartTimer());
+                }
+                //var obj = _bulletsPool.Get();
+                //if (obj != null)
+                //{
+                //    var temAmmunition = obj.GetComponent<Rigidbody>();//
+                //                                                      // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
+                //    temAmmunition.gameObject.SetActive(true);
+                //    temAmmunition.AddForce(_startShotPosition.up * _shootForce);
+                //}
+                //_bulletsPool.ReturnToPool(obj);
+            }
+
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                GameObject enemies = EnemiesPool.instance.Get();
+                if (enemies != null)
+                {
+                    int random = Random.Range(-5, 5);
+                    Vector3 _startVector = new Vector3(random, random, -1);
+
+                    var temAmmunition = enemies.GetComponent<Rigidbody>();
+                    temAmmunition.gameObject.transform.position = _startVector;
+                    temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    temAmmunition.gameObject.SetActive(true);
+                }
             }
         }
         private void RbMove()
