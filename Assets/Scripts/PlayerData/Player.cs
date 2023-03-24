@@ -36,9 +36,9 @@ namespace Asteroids
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
                                                          //-------------------------
                                                          // Init(_bullet);
-            //GameObject healthBar = Instantiate(HealthBarPrefab);
-            //_healthBar = healthBar.GetComponent<HealthBar>();
-            //_healthBar.Setup(transform);
+                                                         //GameObject healthBar = Instantiate(HealthBarPrefab);
+                                                         //_healthBar = healthBar.GetComponent<HealthBar>();
+                                                         //_healthBar.Setup(transform);
         }
         void Update()
         {
@@ -95,11 +95,12 @@ namespace Asteroids
                 GameObject enemies = EnemiesPool.instance.Get();
                 if (enemies != null)
                 {
-                    int random = Random.Range(-5, 5);
+                    int random = Random.Range(-6, 6);
                     Vector3 _startVector = new Vector3(random, random, -1);
 
                     var temAmmunition = enemies.GetComponent<Rigidbody>();
                     temAmmunition.gameObject.SetActive(true);
+                    temAmmunition.GetComponent<EnemyHealth>().ActivateHpBar();
                     temAmmunition.gameObject.transform.position = _startVector;
                     temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }

@@ -9,25 +9,20 @@ namespace Asteroids
     {
         [SerializeField] private int _health; // for test, after set stealth
         [SerializeField] private int _maxHealth = 2;
+
+        [SerializeField] private Transform HealthBarPrefabRoot;
         private HealthBar _healthBar;
-        private Transform HealthBarPrefabRoot;
 
         public GameObject HealthBarPrefab;
         private void Awake()
         {
             GameObject healthBar = Instantiate(HealthBarPrefab, HealthBarPrefabRoot);
-            _healthBar = healthBar.GetComponent<HealthBar>();
+            _healthBar = healthBar.GetComponentInChildren<HealthBar>();
             _healthBar.Setup(gameObject.transform);
         }
         private void Start()
         {
-            // HealthBarPrefabRoot = new GameObject(HealthBar.);
-            // gameObject.set
-            
             _health = _maxHealth;
-
-            // CurrentHealth = _health;
-            // healthBar.transform.SetParent(gameObject. transform);
         }
         public void TakeDamage(int damageValue)
         {
@@ -44,6 +39,12 @@ namespace Asteroids
             gameObject.SetActive(false);
             _healthBar.gameObject.SetActive(false);
             // Destroy(_healthBar.gameObject);
+        }
+        public void ActivateHpBar()
+        {
+            _healthBar.gameObject.SetActive(true);
+            _health = _maxHealth; Debug.LogWarning("ActivateHpBar");
+            _healthBar.SetHealth(_health, _maxHealth);
         }
         private void OnCollisionEnter(Collision collision)
         {

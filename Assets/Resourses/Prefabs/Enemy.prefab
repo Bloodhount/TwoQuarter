@@ -112,7 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a261a7ac5e896c4418606f94e167f839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speedMin: 0.5
+  _speedMax: 2
+  randomSpeed: 0
   _rigidbody: {fileID: 0}
   _playerTransform: {fileID: 0}
 --- !u!114 &1318425729131330383
@@ -141,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 2
   _maxHealth: 3
+  HealthBarPrefabRoot: {fileID: 1318425729468199686}
   HealthBarPrefab: {fileID: 3397840154012935470, guid: f6b52a40e65cce84c934aa447b12bd7e, type: 3}
 --- !u!1 &1318425729468199685
 GameObject:

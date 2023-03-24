@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
     }
     void LateUpdate()
     {
-         transform.position = Target.position + Vector3.up * 0.4f + (-Vector3.forward * 0.4f);
+         transform.position = Target.position + Vector3.up * 0.4f + (-Vector3.forward * 0.2f);
         transform.rotation = _cameraTransform.rotation;
 
         //transform.LookAt(_cameraTransform);
