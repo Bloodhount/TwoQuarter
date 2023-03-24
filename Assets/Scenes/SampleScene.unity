@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 420283764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 501817937}
   - component: {fileID: 501817938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573861362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StartShotPosition
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 1209907385}
   - component: {fileID: 1209907387}
   - component: {fileID: 1209907386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,6 +503,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 3
+  _maxHp: 0
+  HealthBarPrefab: {fileID: 3397840154012935470, guid: f6b52a40e65cce84c934aa447b12bd7e, type: 3}
 --- !u!54 &1209907386
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -642,7 +644,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563409628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f7d2122b3415f74a926c724940fbecb, type: 3}
   m_Name: 
@@ -703,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1854460443}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}

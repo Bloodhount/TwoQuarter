@@ -18,8 +18,9 @@ namespace Asteroids
         private Rigidbody _playerRigidbody;
         private AccelerationMove _moveTransform;
         //============================
+        //private HealthBar _healthBar; public GameObject HealthBarPrefab;
         // [SerializeField] private int _initPrefabsCount = 3;
-        private BulletsPool _bulletsPool;
+        // private BulletsPool _bulletsPool;
 
         public void Init(GameObject pooledGameObject)
         {
@@ -35,7 +36,9 @@ namespace Asteroids
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
                                                          //-------------------------
                                                          // Init(_bullet);
-
+            //GameObject healthBar = Instantiate(HealthBarPrefab);
+            //_healthBar = healthBar.GetComponent<HealthBar>();
+            //_healthBar.Setup(transform);
         }
         void Update()
         {
@@ -43,10 +46,6 @@ namespace Asteroids
             _ship.Rotation(direction);
 
             PlayerInput();
-        }
-        private void FixedUpdate()
-        {
-            RbMove();
         }
 
         private void PlayerInput()
@@ -70,15 +69,16 @@ namespace Asteroids
                 GameObject bullet = BulletsPool.instance.Get();
                 if (bullet != null)
                 {
-                    var temAmmunition = bullet.GetComponent<Rigidbody>();//
-                                                                         // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
+                    var temAmmunition = bullet.GetComponent<Rigidbody>();
+                    // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
                     temAmmunition.gameObject.transform.position = _startShotPosition.position;
                     temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                     // temAmmunition.gameObject.transform.rotation = _startShotPosition.rotation;
                     temAmmunition.gameObject.SetActive(true);
                     temAmmunition.AddForce(_startShotPosition.up * _shootForce);
-                    bullet.GetComponent<Bullet>().S(); // StartCoroutine(StartTimer());
+                    bullet.GetComponent<Bullet>().StartDisasbleGOTimer(); // StartCoroutine(StartTimer());
                 }
+                #region по методичке
                 //var obj = _bulletsPool.Get();
                 //if (obj != null)
                 //{
@@ -88,8 +88,8 @@ namespace Asteroids
                 //    temAmmunition.AddForce(_startShotPosition.up * _shootForce);
                 //}
                 //_bulletsPool.ReturnToPool(obj);
+                #endregion
             }
-
             if (Input.GetKeyUp(KeyCode.E))
             {
                 GameObject enemies = EnemiesPool.instance.Get();
@@ -99,11 +99,15 @@ namespace Asteroids
                     Vector3 _startVector = new Vector3(random, random, -1);
 
                     var temAmmunition = enemies.GetComponent<Rigidbody>();
+                    temAmmunition.gameObject.SetActive(true);
                     temAmmunition.gameObject.transform.position = _startVector;
                     temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    temAmmunition.gameObject.SetActive(true);
                 }
             }
+        }
+        private void FixedUpdate()
+        {
+            RbMove();
         }
         private void RbMove()
         {

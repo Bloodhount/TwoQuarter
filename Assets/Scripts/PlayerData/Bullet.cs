@@ -11,7 +11,7 @@ namespace Asteroids
         {
             // StartCoroutine(StartTimer());
         }
-        public void S()
+        public void StartDisasbleGOTimer()
         {
             StartCoroutine(StartTimer());
         }

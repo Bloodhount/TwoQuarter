@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 8158340129565928165}
   - component: {fileID: 2400074770464959008}
   - component: {fileID: 2396227929900420395}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -142,3 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bcce9033715ff4f99df583d13eab37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Timer: 2

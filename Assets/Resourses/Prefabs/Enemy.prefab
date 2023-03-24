@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1318425728750885226}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1318425729131330382}
   - component: {fileID: 1318425729131330383}
   - component: {fileID: 1691396136}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318425729131330378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a261a7ac5e896c4418606f94e167f839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 1
   _rigidbody: {fileID: 0}
   _playerTransform: {fileID: 0}
 --- !u!114 &1318425729131330383
@@ -139,7 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10a832bf39d5e041b5b7caefbb511f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  _health: 2
+  _maxHealth: 3
+  HealthBarPrefab: {fileID: 3397840154012935470, guid: f6b52a40e65cce84c934aa447b12bd7e, type: 3}
 --- !u!1 &1318425729468199685
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1318425729468199686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,8 +166,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318425729468199685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1318425728750885226}
@@ -180,7 +182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1318425730373037720}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: StartShotPosition
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
@@ -212,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318425730619296013}
   - component: {fileID: 1318425730619296014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

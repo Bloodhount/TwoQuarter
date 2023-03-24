@@ -25,9 +25,10 @@ namespace Asteroids
             int random = Random.Range(-5, 5);
             for (int i = 0; i < _ObjectsAmount; i++)
             {
-                _startPosition.position = new Vector3(random, random, -1);
                 GameObject obj = Instantiate(_prefab, _startPosition.position, _startPosition.rotation);
-                // obj.SetActive(false);
+                obj.SetActive(true);
+                _startPosition.position = new Vector3(random, random, -1);
+                //  obj.GetComponent<EnemyHealth>().CurrentHealth;
                 _poolObjects.Add(obj);
             }
         }
@@ -38,6 +39,18 @@ namespace Asteroids
             {
                 if (!_poolObjects[i].activeInHierarchy)
                 {
+                    _poolObjects[i].SetActive(true);
+                    var hpBar = _poolObjects[i].GetComponent<HealthBar>();
+                    hpBar.gameObject.SetActive(true);
+                    var hpCurrent = _poolObjects[i].GetComponent<EnemyHealth>();
+                    // h.CurrentHealth = h.MaxHealth;
+                    hpBar.SetHealth(hpCurrent.MaxHealth, hpCurrent.MaxHealth);
+                    _poolObjects[i].GetComponent<EnemyHealth>().HealthBarPrefab.SetActive(true);
+                    // _poolObjects[i].GetComponent<EnemyHealth>().gameObject.Set();
+                    // _poolObjects[i].GetComponent<EnemyHealth>().HealthBarPrefab.transform. SetParent(_poolObjects[i].transform);
+
+                    //  _poolObjects[i].GetComponent // call some method
+                    // transform.SetParent(_poolObjects[i].transform);
                     return _poolObjects[i];
                 }
             }
@@ -48,6 +61,7 @@ namespace Asteroids
         {
             //gameObject.SetActive(false);
             //_poolObjects.Push(gameObject);
+            // transform.SetParent(Enemy);
         }
         public void Dispose()
         {
