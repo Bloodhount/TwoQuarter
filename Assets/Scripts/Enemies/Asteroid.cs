@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController 
+namespace Asteroids
 {
-
+    public sealed class Asteroid : Enemy
+    {
+    }
 }
