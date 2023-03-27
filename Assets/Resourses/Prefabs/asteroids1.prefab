@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 686104037199011755}
-  - component: {fileID: 7451075049387346601}
-  - component: {fileID: -3728836881456384497}
+  - component: {fileID: 7250294177029038016}
+  - component: {fileID: 5957939511243577194}
+  - component: {fileID: 3841821797127515377}
   m_Layer: 0
   m_Name: asteroids1
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7451075049387346601
+--- !u!114 &7250294177029038016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +44,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3692776855680869083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa6a86b4296a2564094643e3344f1128, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b457cc4ea9fd7c44b548d1369778fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3728836881456384497
+--- !u!114 &5957939511243577194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,10 +56,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 3692776855680869083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f10a832bf39d5e041b5b7caefbb511f8, type: 3}
+  m_Script: {fileID: 11500000, guid: a261a7ac5e896c4418606f94e167f839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  _speedMin: 0.1
+  _speedMax: 0.2
+--- !u!54 &3841821797127515377
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692776855680869083}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5784298478653531832
 GameObject:
   m_ObjectHideFlags: 0

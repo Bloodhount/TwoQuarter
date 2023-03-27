@@ -28,32 +28,24 @@ namespace Asteroids
                 GameObject obj = Instantiate(_prefab, _startPosition.position, _startPosition.rotation);
                 obj.SetActive(true);
                 _startPosition.position = new Vector3(random, random, -1);
-                //  obj.GetComponent<EnemyHealth>().CurrentHealth;
                 _poolObjects.Add(obj);
             }
         }
 
-        public GameObject Get()
+        public GameObject GetEnemy_1<T>() // you can pass values
         {
             for (int i = 0; i < _poolObjects.Count; i++)
             {
                 if (!_poolObjects[i].activeInHierarchy)
                 {
+                    int random = Random.Range(-6, 6);
+                    Vector3 _startVector = new Vector3(random, random, -1);
+
                     _poolObjects[i].SetActive(true);
+                    _poolObjects[i].transform.position = _startVector;
+                    _poolObjects[i].gameObject.GetComponent<EnemyHealth>().ActivateHpBar();
+                    _poolObjects[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-                  //  var hpBar = _poolObjects[i].GetComponentInChildren<HealthBar>();
-                    //var hpBar = _poolObjects[i].GetComponent<HealthBar>();
-                    //hpBar. gameObject.SetActive(true);
-                   
-                    //var hpCurrent = _poolObjects[i].GetComponent<EnemyHealth>();
-                    //hpCurrent.ActivateHpBar();
-
-                   // hpBar.SetHealth(hpCurrent.MaxHealth, hpCurrent.MaxHealth);
-                  // _poolObjects[i].GetComponent<EnemyHealth>().;
-                    // _poolObjects[i].GetComponent<EnemyHealth>().gameObject.Set();
-                    // _poolObjects[i].GetComponent<EnemyHealth>().HealthBarPrefab.transform. SetParent(_poolObjects[i].transform);
-
-                    // transform.SetParent(_poolObjects[i].transform);
                     return _poolObjects[i];
                 }
             }

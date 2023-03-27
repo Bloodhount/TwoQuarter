@@ -6,27 +6,20 @@ namespace Asteroids
 {
     internal sealed class Player : MonoBehaviour
     {
+        #region FieldsRegion
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
         [SerializeField] private float _shootForce = 10f;
+
         private float _inputDirVertical, _inputDirHorizontal;
 
         [SerializeField] private Transform _startShotPosition;
-        // [SerializeField] private GameObject _bullet;
+
         private Camera _camera;
         private Ship _ship;
         private Rigidbody _playerRigidbody;
         private AccelerationMove _moveTransform;
-        //============================
-        //private HealthBar _healthBar; public GameObject HealthBarPrefab;
-        // [SerializeField] private int _initPrefabsCount = 3;
-        // private BulletsPool _bulletsPool;
-
-        public void Init(GameObject pooledGameObject)
-        {
-            // _bulletsPool = new BulletsPool(pooledGameObject, _startShotPosition, _initPrefabsCount);
-        }
-        //============================
+        #endregion 
         private void Start()
         {
             _camera = Camera.main;
@@ -34,11 +27,6 @@ namespace Asteroids
             _moveTransform = new AccelerationMove(_playerRigidbody, _speed, _acceleration);
             var _rotation = new RotationShip(transform);
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
-                                                         //-------------------------
-                                                         // Init(_bullet);
-                                                         //GameObject healthBar = Instantiate(HealthBarPrefab);
-                                                         //_healthBar = healthBar.GetComponent<HealthBar>();
-                                                         //_healthBar.Setup(transform);
         }
         void Update()
         {
@@ -47,7 +35,6 @@ namespace Asteroids
 
             PlayerInput();
         }
-
         private void PlayerInput()
         {
 
@@ -92,18 +79,13 @@ namespace Asteroids
             }
             if (Input.GetKeyUp(KeyCode.E))
             {
-                GameObject enemies = EnemiesPool.instance.Get();
-                if (enemies != null)
-                {
-                    int random = Random.Range(-6, 6);
-                    Vector3 _startVector = new Vector3(random, random, -1);
-
-                    var temAmmunition = enemies.GetComponent<Rigidbody>();
-                    temAmmunition.gameObject.SetActive(true);
-                    temAmmunition.GetComponent<EnemyHealth>().ActivateHpBar();
-                    temAmmunition.gameObject.transform.position = _startVector;
-                    temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                }
+                GameObject enemies = EnemiesPool.instance.GetEnemy_1<Enemy>();
+                //if (enemies != null)
+                //{
+                // enemies.AddComponent
+                //    //var temAmmunition = enemies.GetComponent<Rigidbody>();
+                //    //temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //}
             }
         }
         private void FixedUpdate()

@@ -1,34 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using Asteroids.Factories;
 using UnityEngine;
 
 namespace Asteroids
 {
     public sealed class GameManager : MonoBehaviour
     {
-        //[SerializeField] private Transform _startShotPosition;
-        //[SerializeField] private int InitPrefabsCount = 3;
-        //[SerializeField] private BulletsPool _bulletsPool;
-
-        //public void Init(GameObject pooledGameObject)
-        //{
-        //    _bulletsPool = new BulletsPool(pooledGameObject,_startShotPosition, InitPrefabsCount);
-        //}
+        [SerializeField] UnitAsterFactory go;
         void Start()
         {
-            //Enemy enemy = new Enemy();
-            //enemy. CreateAsteroidEnemy(new Asteroid());
+            // var un = go.CreateAsUn();
+            // StaticUnitFactory.CreateUnit();
+            #region TestRegion
+            // StaticUnitFactory.CreateEnemy();
+            // var unit_1 = StaticUnitFactory.CreateUnit();
+            //Debug.Log(unit_1.name);
 
-            // Enemy.CreateAsteroidEnemy(new EnemyHealth());
-            //IEnemyFactory factory = new AsteroidFactory();
-            //factory.Create(new EnemyHealth());
 
-            //var obj = _bulletsPool.Get();
-            //_bulletsPool.ReturnToPool(obj);
+            //Enemy enemy_one = StaticUnitFactory.CreateEnemy();
+            ////  Enemy enemy_one = StaticUnitFactory.CreateUnit();
+            //// enemy_one.gameObject.AddComponent<EnemyHealth>();
+            //enemy_one.CreateAsteroidEnemy();
+
+            //IEnemyFactory asteroidfactory_one = new AsteroidFactory();
+            //go = asteroidfactory_one.Create(new EnemyHealth());
+            #endregion
         }
-        //private void OnDestroy()
-        //{
-        //    _bulletsPool.Dispose();
-        //}
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                StaticUnitFactory.CreateUnit();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                var un = go.CreateAsUn();
+            }
+        }
     }
 }

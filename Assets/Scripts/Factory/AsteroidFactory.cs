@@ -4,13 +4,16 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public sealed class AsteroidFactory : IEnemyFactory
-    {    [SerializeField] private Asteroid _asteroid;
-        public  Enemy Create(EnemyHealth health)
+    public class AsteroidFactory<T> : MonoBehaviour where T : MonoBehaviour//, IEnemyFactory
+    {
+        [SerializeField] private T _prefab;
+        [SerializeField] private Transform _spawnPoint;
+        public T CreateAsUn() //(EnemyHealth health)
         {
-          //  var enemy = Object.Instantiate(Resources.Load<Asteroid>("Prefabs/asteroids1"));
-            var enemy = GameObject. Instantiate<Asteroid>(_asteroid); 
-            enemy.DependencyInjectHealth(health);
+            //  var enemy = Object.Instantiate(Resources.Load<Asteroid>("Prefabs/asteroids1"));
+            Vector3 pos = new Vector3(_spawnPoint.position.x, _spawnPoint.position.y, _spawnPoint.position.z);
+            var enemy = GameObject.Instantiate(_prefab, pos, Quaternion.identity);
+            // enemy.DependencyInjectHealth(health);
             return enemy;
         }
     }

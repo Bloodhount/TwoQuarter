@@ -8,10 +8,13 @@ namespace Asteroids
     {
         [SerializeField] private float _speedMin = 1f;
         [SerializeField] private float _speedMax = 2f;
-        [SerializeField] private float randomSpeed;
+        // [SerializeField] for tests
+        private float randomSpeed;
+        // [SerializeField] for tests
+        private Rigidbody _rigidbody;
+        // [SerializeField] for tests
+        private Transform _playerTransform;
 
-        [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private Transform _playerTransform;
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();

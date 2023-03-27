@@ -113,10 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedMin: 0.5
-  _speedMax: 2
-  randomSpeed: 0
-  _rigidbody: {fileID: 0}
-  _playerTransform: {fileID: 0}
+  _speedMax: 1
 --- !u!114 &1318425729131330383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9018993c4d756049ab6b26262837953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _asteroidPrefab: {fileID: 3692776855680869083, guid: 9b742a08ce45b324391d6ec669858112, type: 3}
+  res: {fileID: 0}
 --- !u!114 &1691396136
 MonoBehaviour:
   m_ObjectHideFlags: 0

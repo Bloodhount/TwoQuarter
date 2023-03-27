@@ -7,15 +7,19 @@ namespace Asteroids
     public class PlayerHealth : MonoBehaviour
     {
         [SerializeField] private int _hp;
-        [SerializeField] private int _maxHp;
+        [SerializeField] private int _maxHp = 3;
+        [SerializeField] private Transform HealthBarPrefabRoot;
         private HealthBar _healthBar;
         public GameObject HealthBarPrefab;
+        private void Awake()
+        {
+            GameObject healthBar = Instantiate(HealthBarPrefab, HealthBarPrefabRoot);
+            _healthBar = healthBar.GetComponentInChildren<HealthBar>();
+            _healthBar.Setup(gameObject.transform);
+        }
         private void Start()
         {
-            GameObject healthBar = Instantiate(HealthBarPrefab);
-            _maxHp = _hp;
-            _healthBar = healthBar.GetComponent<HealthBar>();
-            _healthBar.Setup(transform);
+            _hp = _maxHp;
         }
         private void OnCollisionEnter(Collision collision)
         {
