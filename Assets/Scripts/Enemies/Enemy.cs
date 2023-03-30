@@ -5,7 +5,7 @@ using Adapter;
 
 namespace Asteroids
 {
-    public class Enemy : MonoBehaviour, IEnemy, IAttack
+    public class Enemy : MonoBehaviour, IEnemy // , IAttack
     {
         //  [SerializeField] private Object _asteroid;
 
@@ -22,10 +22,10 @@ namespace Asteroids
         {
             Debug.LogWarning("  TODO: remake inplementation interface IEnemy class Enemy  ");
         }
-        [ContextMenu("Enemy.UniversalAttack")]
-        public void UniversalAttack(Vector3 position)
-        {
-            Debug.LogWarning("  TODO: remake inplementation interface IAttack class Enemy  ");
-        }
+       // [ContextMenu("Enemy.UniversalAttack")]
+        //public void UniversalAttack(Vector3 position)
+        //{
+        //    Debug.LogWarning("  TODO: remake inplementation interface IAttack class Enemy  ");
+        //}
     }
 }

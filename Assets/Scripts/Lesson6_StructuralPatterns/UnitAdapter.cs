@@ -13,11 +13,15 @@ namespace Adapter
             _unit = unit;
             _radius = r;
         }
-
+        public void UnitInit(IUnit unit, float r)
+        {
+            _unit = unit;
+            _radius = r;
+        }
         public void UniversalAttack(Vector3 position)
         {
-            _unit.UnitAttack(position, _radius);
             Debug.LogWarning($">{gameObject.name}<  UnitAdapter. <color=red>UniversalAttack</color> ");
+            _unit.UnitAttack(position, _radius);
         }
     }
 }

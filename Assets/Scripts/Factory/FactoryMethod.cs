@@ -54,11 +54,11 @@ namespace Asteroids.Factories
         {
             return CreateEnemy();
         }
-        public IAttack GetIAttack()
-        {
-            IAttack enemy = new Enemy();
-            return enemy;
-        }
+        //public IAttack GetIAttack()
+        //{
+        //    IAttack enemy = new Enemy();
+        //    return enemy;
+        //}
         protected abstract IEnemy CreateEnemy();
 
         #region other methods to do stuff with created enemies

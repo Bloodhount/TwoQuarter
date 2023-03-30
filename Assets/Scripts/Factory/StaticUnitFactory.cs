@@ -16,15 +16,18 @@ namespace Asteroids.Factories
             go.transform.position = new Vector3(0, 0, -1);
             go.name = "StaticUnitFactory new Unit";
             var unit = go.AddComponent<Unit>();
-           // var sprite111 = Resources.Load<Sprite>("Prefabs/asteroids01");
+            unit.Config("fafsfdsa");
+            // var sprite111 = Resources.Load<Sprite>("Prefabs/asteroids01");
             go.AddComponent<SpriteRenderer>();
             go.GetComponentInChildren<SpriteRenderer>().sprite = spriteTest;
 
             go.AddComponent<DestroySelfGO>();
             go.GetComponent<DestroySelfGO>()._timeToSelfdestruct = 2;
 
-            unit.Config("fafsfdsa");
-           // Debug.Log(" sprite111 = " + sprite111);            
+           // go.AddComponent<UnitAsterFactory>(); // .TestUnitAdapter3();
+           // go.GetComponent<UnitAsterFactory>().
+
+            // Debug.Log(" sprite111 = " + sprite111);            
             Debug.Log(unit.name);
             return unit;
         }
