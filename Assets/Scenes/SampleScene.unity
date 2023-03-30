@@ -593,6 +593,8 @@ GameObject:
   - component: {fileID: 1563409629}
   - component: {fileID: 1563409631}
   - component: {fileID: 1563409632}
+  - component: {fileID: 1563409633}
+  - component: {fileID: 1563409634}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -613,6 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go: {fileID: 248075239}
+  goSprite: {fileID: 21300000, guid: 298c7fefaf1861645a5fdcf53d0f0681, type: 3}
 --- !u!4 &1563409630
 Transform:
   m_ObjectHideFlags: 0
@@ -660,6 +663,32 @@ MonoBehaviour:
   _prefab: {fileID: 1318425729131330378, guid: 2e54fa248d8ee08469b8ec02e5ecacb0, type: 3}
   _startPosition: {fileID: 1563409630}
   _ObjectsAmount: 3
+--- !u!114 &1563409633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563409628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b995345acc6bf489fbb50730195988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1563409634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563409628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7161607ba381c3e4c912de21b9611ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameConfig: {fileID: 11400000, guid: 9b21982a0626a40428b3b52980c3bb73, type: 2}
+  LevelConfig: {fileID: 11400000, guid: 38fba3cc2e5dc4e42b477d8427ab6ffa, type: 2}
 --- !u!1 &1854460442
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Adapter;
 using UnityEngine;
 
 namespace Asteroids.Factories
@@ -19,7 +20,7 @@ namespace Asteroids.Factories
             var enemy = _enemyFactory.GetEnemy();
         }
 
-         EnemyBaseFactory _enemyFactoryServer = new ServerEnemyFactory(); 
+        EnemyBaseFactory _enemyFactoryServer = new ServerEnemyFactory();
         public void StartServerGame()
         {
             var enemy = _enemyFactoryServer.GetEnemy();
@@ -27,10 +28,13 @@ namespace Asteroids.Factories
     }
     public class ClientEnemyFactory : EnemyBaseFactory
     {
+        private Transform _playerTransform;
         protected override IEnemy CreateEnemy()
         {
+            // TODO
             IEnemy enemy = new Enemy();
-            enemy.Attack();
+            // _playerTransform = find
+           //  enemy.EnemyAttack(enemy.g,);
             return enemy;
         }
     }
@@ -38,8 +42,9 @@ namespace Asteroids.Factories
     {
         protected override IEnemy CreateEnemy()
         {
+            // TODO
             IEnemy enemy = new Enemy(); // not using view
-            enemy.Attack();
+            //  enemy.EnemyAttack();
             return enemy;
         }
     }
@@ -48,6 +53,11 @@ namespace Asteroids.Factories
         public IEnemy GetEnemy()
         {
             return CreateEnemy();
+        }
+        public IAttack GetIAttack()
+        {
+            IAttack enemy = new Enemy();
+            return enemy;
         }
         protected abstract IEnemy CreateEnemy();
 

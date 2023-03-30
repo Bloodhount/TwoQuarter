@@ -6,7 +6,8 @@ namespace Asteroids
 {
     public class DestroySelfGO : MonoBehaviour
     {
-        [SerializeField] private int _timeToSelfdestruct = 1;
+        [SerializeField] public int _timeToSelfdestruct = 1;
+       // [SerializeField] private int _timeToSelfdestruct = 1;
 
         void Start()
         {
