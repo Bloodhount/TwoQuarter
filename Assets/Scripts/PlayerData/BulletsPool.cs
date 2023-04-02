@@ -24,14 +24,17 @@ namespace Asteroids
         }
         private void Start()
         {
-            _startShotPosition = FindObjectOfType<Player>().GetComponent<Transform>(); // transform;
-            for (int i = 0; i < _bulletAmount; i++)
+            if (_startShotPosition != null)
             {
-                // GameObject obj = Instantiate(_prefab);
-                GameObject obj = Instantiate(_prefab, _startShotPosition.position, _startShotPosition.rotation);
-                // (_bullet, _startShotPosition.position, _startShotPosition.rotation)
-                obj.SetActive(false);
-                _poolObjects.Add(obj);
+                _startShotPosition = FindObjectOfType<Player>().GetComponent<Transform>(); // transform;
+                for (int i = 0; i < _bulletAmount; i++)
+                {
+                    // GameObject obj = Instantiate(_prefab);
+                    GameObject obj = Instantiate(_prefab, _startShotPosition.position, _startShotPosition.rotation);
+                    // (_bullet, _startShotPosition.position, _startShotPosition.rotation)
+                    obj.SetActive(false);
+                    _poolObjects.Add(obj);
+                }
             }
         }
         //public BulletsPool(GameObject prefab, Transform startShotPosition, int initPrefabsCount)

@@ -15,16 +15,20 @@ namespace Asteroids
         //{
         //    TestUnitAdapter();// Log($">{name}< . TestAdapter");
         //}
-        private void TestUnitAdapter()
+        public void TestUnitAdapter()
         {
-            var unit = new Unit();
+            var unit = new Unit(); // You are trying to create a MonoBehaviour using the 'new' keyword.  This is not allowed.  MonoBehaviours can only be added using AddComponent()
             // var enemyAdaptor = new UnitAdapter(unit, 5.5f);
-            unit.gameObject.AddComponent<UnitAdapter>().UnitInit(unit, AttackRadius);
-
-            var attackPos = unit.transform.position;
+            const int staticAttackRadius = 1;
+            gameObject.AddComponent<UnitAdapter>().UnitInit(unit, staticAttackRadius);
+           // unit.gameObject.AddComponent<UnitAdapter>().UnitInit(unit, staticAttackRadius);
+            var attackPos = gameObject.transform.position;
+            Log($"{gameObject.transform.position} ");
+            GetComponent<UnitAdapter>().UniversalAttack(unit.gameObject.transform.position);
+           // GetComponent<UnitAdapter>().UniversalAttack(attackPos);
+            
             // enemyAdaptor.UniversalAttack(attackPos);
-            unit.GetComponent<UnitAdapter>().UniversalAttack(attackPos);
-            Log($">name< . TestUnitAdapter . UniversalAttack({attackPos})");
+            Log($">{name}< . TestUnitAdapter . UniversalAttack({attackPos})");
         }
         public void TestUnitAdapter2(Unit unit, Vector3 pos)
         {

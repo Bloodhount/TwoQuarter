@@ -14,7 +14,7 @@ namespace Asteroids.Factories
         {
             var go = new GameObject();
             go.transform.position = new Vector3(0, 0, -1);
-            go.name = "StaticUnitFactory new Unit";
+            go.name = "StaticUnitFactory. new Unit";
             var unit = go.AddComponent<Unit>();
             unit.Config("fafsfdsa");
             // var sprite111 = Resources.Load<Sprite>("Prefabs/asteroids01");
@@ -22,10 +22,11 @@ namespace Asteroids.Factories
             go.GetComponentInChildren<SpriteRenderer>().sprite = spriteTest;
 
             go.AddComponent<DestroySelfGO>();
-            go.GetComponent<DestroySelfGO>()._timeToSelfdestruct = 2;
+            go.GetComponent<DestroySelfGO>()._timeToSelfdestruct = 5;
 
-           // go.AddComponent<UnitAsterFactory>(); // .TestUnitAdapter3();
-           // go.GetComponent<UnitAsterFactory>().
+            go.AddComponent<UnitAsterFactory>(); // .TestUnitAdapter3();
+            go.GetComponent<UnitAsterFactory>().InitUnit(go.GetComponent<Unit>(), go.transform);
+            // go.GetComponent<UnitAsterFactory>().TestUnitAdapter();
 
             // Debug.Log(" sprite111 = " + sprite111);            
             Debug.Log(unit.name);

@@ -646,7 +646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolObjects: []
   _prefab: {fileID: 8509095386530412970, guid: b9a0511231c18394db01a55b059eaa28, type: 3}
-  _startShotPosition: {fileID: 0}
+  _startShotPosition: {fileID: 573861362}
   _bulletAmount: 5
 --- !u!114 &1563409632
 MonoBehaviour:
@@ -663,7 +663,7 @@ MonoBehaviour:
   _poolObjects: []
   _prefab: {fileID: 1318425729131330378, guid: 2e54fa248d8ee08469b8ec02e5ecacb0, type: 3}
   _startPosition: {fileID: 1563409630}
-  _ObjectsAmount: 3
+  _ObjectsAmount: 2
 --- !u!114 &1563409634
 MonoBehaviour:
   m_ObjectHideFlags: 0

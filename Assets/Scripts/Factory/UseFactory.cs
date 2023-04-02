@@ -10,7 +10,6 @@ namespace Asteroids.Factories
         private UnitFactory _enemyFactory;
 
         #region Dependency injection
-
         public UnitFactory EnemyFactory
         {
             set => _enemyFactory = value;
@@ -20,8 +19,8 @@ namespace Asteroids.Factories
         {
             _enemyFactory = enemyFactory;
         }
-
         #endregion
+
 
         private void StartGameWithFactories()
         {

@@ -21,11 +21,6 @@ namespace Prototype
                 var newRigidbody = newObject.AddComponent<Rigidbody>();
                 newRigidbody.mass = rigidbody.mass;
             }
-            //if (gameObject.TryGetComponent<>(out var rigidbody))
-            //{
-            //    var newRigidbody = newObject.AddComponent<Rigidbody>();
-            //    newRigidbody.mass = rigidbody.mass;
-            //}
 
             if (gameObject.GetComponentInChildren<SpriteRenderer>().TryGetComponent<SpriteRenderer>(out var spriteRenderer))
             {

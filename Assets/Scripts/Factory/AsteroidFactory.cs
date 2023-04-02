@@ -2,7 +2,10 @@ using Adapter;
 using UnityEngine;
 
 namespace Asteroids
-{
+{/// <summary>
+/// used type generic type
+/// </summary>
+/// <typeparam name="T"></typeparam>
     public class AsteroidFactory<T> : MonoBehaviour where T : MonoBehaviour//, IEnemyFactory
     {
         [SerializeField] private T _prefab;
@@ -19,6 +22,10 @@ namespace Asteroids
             enemy.gameObject.AddComponent<DestroySelfGO>()._timeToSelfdestruct = 9;
             // enemy.DependencyInjectHealth(health);
             return enemy;
+        }
+        public void InitUnit(T prefab, Transform transform)
+        {
+            _prefab = prefab; _spawnPoint = transform;
         }
     }
 }

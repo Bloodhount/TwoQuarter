@@ -10,7 +10,7 @@ namespace Asteroids
         //  [SerializeField] private Object _asteroid;
 
         [SerializeField] private GameObject _asteroidPrefab;
-        [SerializeField] private Asteroid res;
+      //  [SerializeField] private Asteroid res;
         public EnemyHealth Health { get; private set; } // bad variant to use
         public void DependencyInjectHealth(EnemyHealth hp)
         {

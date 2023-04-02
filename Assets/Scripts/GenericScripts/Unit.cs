@@ -8,8 +8,10 @@ namespace Asteroids
 {
     public class Unit : MonoBehaviour, IUnit // , IAttack
     {
-        private string _name = String.Empty;
-        private string _Type = String.Empty;
+        private string _name = string.Empty;
+        private string _Type = string.Empty;
+        //private string _name = String.Empty;
+        //private string _Type = String.Empty;
         private EnemyHealth health;
 
         public void Config(string name)
@@ -24,7 +26,7 @@ namespace Asteroids
 
         //}
         public void UnitAttack(Vector3 position, float radius)
-        {  //Config(name);
+        {
             Debug.Log($" class Unit, <color=yellow> GO:  {name} ,</color>" +
                 $" UnitAttack {position} , <color=green>{radius}</color>  ");
         }

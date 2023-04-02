@@ -78,16 +78,7 @@ namespace Asteroids
                 //_bulletsPool.ReturnToPool(obj);
                 #endregion
             }
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                GameObject enemies = EnemiesPool.instance.GetEnemy_1<Enemy>();
-                //if (enemies != null)
-                //{
-                // enemies.AddComponent
-                //    //var temAmmunition = enemies.GetComponent<Rigidbody>();
-                //    //temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                //}
-            }
+
         }
         private void FixedUpdate()
         {

@@ -6,26 +6,78 @@ namespace Asteroids
 {
     public class EnemiesPool : MonoBehaviour
     {
-        public static EnemiesPool instance;
         [SerializeField] private List<GameObject> _poolObjects = new List<GameObject>();
         [SerializeField] private GameObject _prefab;
 
         [SerializeField] private Transform _startPosition;
         [SerializeField] private int _ObjectsAmount = 10;
 
+        private static EnemiesPool _instance;
+        public static EnemiesPool Instance
+        {
+            get
+            {
+                if (!_instance)
+                {
+                    var singleton = new GameObject();
+                    var enemiesPool = singleton.AddComponent<EnemiesPool>();
+                    _instance = enemiesPool;
+                }
+               return _instance;
+            }
+           // set => _instance = value; 
+        }
+
+        //public EnemiesPool()
+        //{
+        //    if (instance == null)
+        //    {
+        //        instance = this;
+        //    }
+        //   // InitEnemiesPool();
+        //    //InitEnemiesPool(enemyAmount: _ObjectsAmount, prefab: _prefab, spawnPos: _startPosition);
+        //}
         private void Awake()
         {
-            if (instance == null)
+            if (_instance )
             {
-                instance = this;
-            }
+                Destroy(this);
+                return;
+            }                
+                _instance = this; // DontDestroyOnLoad(this);
+            
+            //if (Instance == null)
+            //{
+            //    Instance = this;DontDestroyOnLoad(this);
+            //}
+            //else
+            //{
+            //    Destroy(this);
+            //}
         }
         private void Start()
+        {
+            InitEnemiesPool();
+        }
+
+        //private void InitEnemiesPool(int enemyAmount, GameObject prefab, Transform spawnPos)
+        private void InitEnemiesPool()
         {
             int random = Random.Range(-3, 6);
             for (int i = 0; i < _ObjectsAmount; i++)
             {
                 GameObject obj = Instantiate(_prefab, _startPosition.position, _startPosition.rotation);
+                obj.SetActive(true);
+                _startPosition.position = new Vector3(random, random, -1);
+                _poolObjects.Add(obj);
+            }
+        }
+        private void InitEnemiesPool(int enemyAmount, GameObject prefab, Transform spawnPos)
+        {
+            int random = Random.Range(-3, 6);
+            for (int i = 0; i < enemyAmount; i++)
+            {
+                GameObject obj = Instantiate(prefab, spawnPos.position, spawnPos.rotation);
                 obj.SetActive(true);
                 _startPosition.position = new Vector3(random, random, -1);
                 _poolObjects.Add(obj);

@@ -33,8 +33,7 @@ namespace Asteroids.Factories
         {
             // TODO
             IEnemy enemy = new Enemy();
-            // _playerTransform = find
-           //  enemy.EnemyAttack(enemy.g,);
+            // use  some mandatory for interface IEnemy methods
             return enemy;
         }
     }
