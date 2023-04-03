@@ -11,7 +11,9 @@ namespace Prototype
         [ContextMenu("TestPrototype")]
         private void TestPrototype()
         {
-            Debug.Log(" PrototypeExample. void TestPrototype ");
+            var newObject = _origin.Clone();
+            var newObjectCasted = (MyClonableObject)newObject;
+            Debug.Log(" PrototypeExample. void TestPrototype . newObjectCasted.name = " + newObjectCasted);
         }
 
         [ContextMenu("TestInstantiate")]

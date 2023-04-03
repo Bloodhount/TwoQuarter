@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 1563409632}
   - component: {fileID: 1563409634}
   - component: {fileID: 1563409635}
+  - component: {fileID: 1563409636}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -646,7 +647,7 @@ MonoBehaviour:
   _prefab: {fileID: 8509095386530412970, guid: b9a0511231c18394db01a55b059eaa28, type: 3}
   _poolObjectsBase: []
   _poolObjectsAlternative: []
-  _view: {fileID: 21300000, guid: 298c7fefaf1861645a5fdcf53d0f0681, type: 3}
+  _view: {fileID: 21300000, guid: 9aa4348290784b2468144a97eb15d8d7, type: 3}
   _bulletAmount: 7
 --- !u!114 &1563409632
 MonoBehaviour:
@@ -693,6 +694,19 @@ MonoBehaviour:
   _prefab: {fileID: 7250294177029038016, guid: 9b742a08ce45b324391d6ec669858112, type: 3}
   _spawnPoint: {fileID: 248075240}
   AttackRadius: 1
+--- !u!114 &1563409636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563409628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7d16d7f1fab6940b226145f1cfccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _origin: {fileID: 8490544915638989267, guid: a71c27ca3da34b248bf580a57e371eb9, type: 3}
 --- !u!1 &1854460442
 GameObject:
   m_ObjectHideFlags: 0

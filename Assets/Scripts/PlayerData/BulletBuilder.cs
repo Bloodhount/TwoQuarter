@@ -37,8 +37,10 @@ public class BulletBuilder //: MonoBehaviour
     public BulletBuilder GetOrAddRigidbody()
     {
         var component = GetOrAddComponent<Rigidbody>();
-        component.mass = 0.1f;
-        component.drag = 0.1f;
+        component.interpolation = RigidbodyInterpolation.Interpolate;
+       // component.collisionDetectionMode = CollisionDetectionMode.Continuous; // при выстреле по€вл€ютс€ фризы
+        component.mass = 0.03f;
+        component.drag = 5.1f;
         component.angularDrag = 0.1f;
         return this;
     }

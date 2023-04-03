@@ -67,7 +67,7 @@ namespace Asteroids
                 GameObject buildResult = gameObjectBuilder
                 .GetName("newBullet_" + i)
                 .GetOrAddSprite(_view)
-                .GetTransform(gameObject.transform, 0.1f)
+                .GetTransform(gameObject.transform, 1.2f)
                 .GetOrAddRigidbody()
                 .GetOrAddCollider()
                 .GetOrAddComponentBullet();
