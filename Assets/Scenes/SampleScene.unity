@@ -309,14 +309,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501817936}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1854460443}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &501817938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 630f8ee533b693c4089a82290ef78aac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e474d39de054e7c45a8de878df830fcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -518,8 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 8
   _acceleration: 24
-  _shootForce: 55
-  _startShotPosition: {fileID: 573861362}
+  _shootForce: 75
 --- !u!4 &1209907384
 Transform:
   m_ObjectHideFlags: 0
@@ -580,8 +579,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 1.5, z: 1}
+  m_Center: {x: -0.25, y: 0, z: 0}
 --- !u!1 &1563409628
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,10 +643,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a654819e51fccc64ea215cceedcd1680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolObjects: []
   _prefab: {fileID: 8509095386530412970, guid: b9a0511231c18394db01a55b059eaa28, type: 3}
-  _startShotPosition: {fileID: 573861362}
-  _bulletAmount: 5
+  _poolObjectsBase: []
+  _poolObjectsAlternative: []
+  _view: {fileID: 21300000, guid: 298c7fefaf1861645a5fdcf53d0f0681, type: 3}
+  _bulletAmount: 7
 --- !u!114 &1563409632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
   _poolObjects: []
   _prefab: {fileID: 1318425729131330378, guid: 2e54fa248d8ee08469b8ec02e5ecacb0, type: 3}
   _startPosition: {fileID: 1563409630}
-  _ObjectsAmount: 2
+  _ObjectsAmount: 3
 --- !u!114 &1563409634
 MonoBehaviour:
   m_ObjectHideFlags: 0

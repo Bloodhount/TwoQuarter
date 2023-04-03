@@ -8,8 +8,8 @@ namespace Asteroids
     {
         [SerializeField] private List<GameObject> _poolObjects = new List<GameObject>();
         [SerializeField] private GameObject _prefab;
-
         [SerializeField] private Transform _startPosition;
+
         [SerializeField] private int _ObjectsAmount = 10;
 
         private static EnemiesPool _instance;
@@ -23,44 +23,22 @@ namespace Asteroids
                     var enemiesPool = singleton.AddComponent<EnemiesPool>();
                     _instance = enemiesPool;
                 }
-               return _instance;
+                return _instance;
             }
-           // set => _instance = value; 
         }
-
-        //public EnemiesPool()
-        //{
-        //    if (instance == null)
-        //    {
-        //        instance = this;
-        //    }
-        //   // InitEnemiesPool();
-        //    //InitEnemiesPool(enemyAmount: _ObjectsAmount, prefab: _prefab, spawnPos: _startPosition);
-        //}
         private void Awake()
         {
-            if (_instance )
+            if (_instance)
             {
                 Destroy(this);
                 return;
-            }                
-                _instance = this; // DontDestroyOnLoad(this);
-            
-            //if (Instance == null)
-            //{
-            //    Instance = this;DontDestroyOnLoad(this);
-            //}
-            //else
-            //{
-            //    Destroy(this);
-            //}
+            }
+            _instance = this; // DontDestroyOnLoad(this);
         }
         private void Start()
         {
             InitEnemiesPool();
         }
-
-        //private void InitEnemiesPool(int enemyAmount, GameObject prefab, Transform spawnPos)
         private void InitEnemiesPool()
         {
             int random = Random.Range(-3, 6);
@@ -106,9 +84,9 @@ namespace Asteroids
 
         public void ReturnToPool(GameObject gameObject)
         {
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
             //_poolObjects.Push(gameObject);
-            // transform.SetParent(Enemy);
+            //transform.SetParent(Enemy);
         }
         public void Dispose()
         {

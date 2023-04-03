@@ -7,83 +7,126 @@ namespace Asteroids
 {
     public class BulletsPool : MonoBehaviour, IDisposable
     {
-        public static BulletsPool instance;
-        [SerializeField] private List<GameObject> _poolObjects = new List<GameObject>();
-        //  [SerializeField] private Stack<GameObject> _poolObjects = new Stack<GameObject>();
         [SerializeField] private GameObject _prefab;
+        [SerializeField] private List<GameObject> _poolObjectsBase = new List<GameObject>();
+        [SerializeField] private List<GameObject> _poolObjectsAlternative = new List<GameObject>();
+        [SerializeField] private Sprite _view;
+        private Transform _startShotPosition;
 
-        [SerializeField] private Transform _startShotPosition;
         [SerializeField] private int _bulletAmount = 10;
 
+        public static BulletsPool _instance;
+        public static BulletsPool Instance
+        {
+            get
+            {
+                if (!_instance)
+                {
+                    var singleton = new GameObject();
+                    var bulletsPool = singleton.AddComponent<BulletsPool>();
+                    _instance = bulletsPool;
+                }
+                return _instance;
+            }
+        }
         private void Awake()
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = this;
+                _instance = this; // DontDestroyOnLoad(this);
+            }
+            else
+            {
+                Destroy(this);
+                return;
             }
         }
         private void Start()
         {
-            if (_startShotPosition != null)
+            _startShotPosition = GameObject.Find("StartShotPosition").transform;
+            // _startShotPosition = FindObjectOfType<Player>().GetComponentInChildren<Transform>();
+
+            InstantiateBullet();
+            TestBulletBuilder();
+        }
+
+        private void InstantiateBullet()
+        {
+            for (int i = 0; i < _bulletAmount; i++)
             {
-                _startShotPosition = FindObjectOfType<Player>().GetComponent<Transform>(); // transform;
-                for (int i = 0; i < _bulletAmount; i++)
-                {
-                    // GameObject obj = Instantiate(_prefab);
-                    GameObject obj = Instantiate(_prefab, _startShotPosition.position, _startShotPosition.rotation);
-                    // (_bullet, _startShotPosition.position, _startShotPosition.rotation)
-                    obj.SetActive(false);
-                    _poolObjects.Add(obj);
-                }
+                GameObject obj = Instantiate(_prefab, _startShotPosition.position, _startShotPosition.rotation);
+                obj.SetActive(false);
+                _poolObjectsBase.Add(obj);
             }
         }
-        //public BulletsPool(GameObject prefab, Transform startShotPosition, int initPrefabsCount)
-        //{
-        //    //_prefab = prefab;
-        //    //_startShotPosition = startShotPosition;
-        //    //for (int i = 0; i < initPrefabsCount; i++)
-        //    //{
-        //    //    Get();
-        //    //}
-        //    for (int i = 0; i < initPrefabsCount; i++)
-        //    {
-        //        GameObject obj = Instantiate(prefab);
-        //        obj.SetActive(false);
-        //        _poolObjects.Add(obj);
-        //    }
-        //}
-
-        public GameObject Get()
+        private void TestBulletBuilder()
         {
-            for (int i = 0; i < _poolObjects.Count; i++)
+            for (int i = 0; i < _bulletAmount; i++)
             {
-                if (!_poolObjects[i].activeInHierarchy)
+                var gameObjectBuilder = new BulletBuilder();
+                GameObject buildResult = gameObjectBuilder
+                .GetName("newBullet_" + i)
+                .GetOrAddSprite(_view)
+                .GetTransform(gameObject.transform, 0.1f)
+                .GetOrAddRigidbody()
+                .GetOrAddCollider()
+                .GetOrAddComponentBullet();
+
+                buildResult.SetActive(false);
+                _poolObjectsAlternative.Add(buildResult);
+            }
+        }
+
+        public GameObject GetBaseObjPool<T>(float shootForce)
+        {
+            for (int i = 0; i < _poolObjectsBase.Count; i++)
+            {
+                if (!_poolObjectsBase[i].activeInHierarchy)
                 {
-                    return _poolObjects[i];
+                    var temAmmunition = _poolObjectsBase[i].gameObject.GetComponent<Rigidbody>();
+                    temAmmunition.transform.position = _startShotPosition.position;
+                    temAmmunition.velocity = Vector3.zero;
+                    temAmmunition.gameObject.SetActive(true);
+                    temAmmunition.AddForce(_startShotPosition.up * shootForce);
+                    temAmmunition.gameObject.GetComponent<Bullet>().StartDisasbleGOTimer();
+
+                    return _poolObjectsBase[i];
                 }
             }
             return null;
+        }
+        public GameObject GetAlternativeObjPool<T>(float shootForce)
+        {
+            for (int i = 0; i < _poolObjectsAlternative.Count; i++)
+            {
+                if (!_poolObjectsAlternative[i].activeInHierarchy)
+                {
+                    var temAmmunition = _poolObjectsAlternative[i].gameObject.GetComponent<Rigidbody>();
+                    temAmmunition.transform.position = _startShotPosition.position;
+                    temAmmunition.velocity = Vector3.zero;
+                    temAmmunition.gameObject.SetActive(true);
+                    temAmmunition.AddForce(_startShotPosition.up * shootForce);
+                    temAmmunition.gameObject.GetComponent<Bullet>().StartDisasbleGOTimer();
 
-            // GameObject result = (_poolObjects.Count == 0) ? GameObject.Instantiate(_prefab, _startShotPosition.position, _startShotPosition.rotation) : _poolObjects.Pop();
-            // _prefab.gameObject.SetActive(true);
-            // result.gameObject.SetActive(true);
-            //  result.SetActive(true);
-            // return result;
+                    return _poolObjectsAlternative[i];
+                }
+            }
+            return null;
         }
 
         public void ReturnToPool(GameObject gameObject)
         {
 
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
             //_poolObjects.Push(gameObject);
         }
         public void Dispose()
         {
-            foreach (var item in _poolObjects)
+            foreach (var item in _poolObjectsBase)
             {
                 GameObject.Destroy(item);
             }
-            _poolObjects.Clear();
+            _poolObjectsBase.Clear();
         }
     }
 }

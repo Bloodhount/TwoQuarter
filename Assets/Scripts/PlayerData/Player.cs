@@ -10,11 +10,11 @@ namespace Asteroids
         #region FieldsRegion
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
-        [SerializeField] private float _shootForce = 10f;
+        [SerializeField] private float _shootForce = 100f;
 
         private float _inputDirVertical, _inputDirHorizontal;
 
-        [SerializeField] private Transform _startShotPosition;
+        // [SerializeField] private Transform _startShotPosition;
 
         private Camera _camera;
         private Ship _ship;
@@ -31,17 +31,41 @@ namespace Asteroids
         }
         void Update()
         {
-            var direction = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
-            _ship.Rotation(direction);
-
             PlayerInput();
         }
+
         private void PlayerInput()
         {
-
-            _inputDirHorizontal = Input.GetAxis("Horizontal");
-            _inputDirVertical = Input.GetAxis("Vertical");
-
+            Aiming();
+            HorizontalInput();
+            VerticalInput();
+            Boost();
+            Shoot();
+            AlternativeShoot();
+        }
+        private void Aiming()
+        {
+            var direction = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
+            _ship.Rotation(direction);
+        }
+        private void Shoot()
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                var bullet = ServiceLocator.GetService<BulletsPool>();
+                bullet.GetBaseObjPool<Bullet>(_shootForce);
+            }
+        }
+        private void AlternativeShoot()
+        {
+            if (Input.GetMouseButton(1))
+            {
+                var bullet = ServiceLocator.GetService<BulletsPool>();
+                bullet.GetAlternativeObjPool<Bullet>(_shootForce);
+            }
+        }
+        private void Boost()
+        {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 _ship.AddAcceleration();
@@ -50,36 +74,16 @@ namespace Asteroids
             {
                 _ship.RemoveAcceleration();
             }
-            if (Input.GetButtonDown("Fire1"))
-            {
-                //Init(_bullet);
-
-                GameObject bullet = BulletsPool.instance.Get();
-                if (bullet != null)
-                {
-                    var temAmmunition = bullet.GetComponent<Rigidbody>();
-                    // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
-                    temAmmunition.gameObject.transform.position = _startShotPosition.position;
-                    temAmmunition.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    // temAmmunition.gameObject.transform.rotation = _startShotPosition.rotation;
-                    temAmmunition.gameObject.SetActive(true);
-                    temAmmunition.AddForce(_startShotPosition.up * _shootForce);
-                    bullet.GetComponent<Bullet>().StartDisasbleGOTimer(); // StartCoroutine(StartTimer());
-                }
-                #region по методичке
-                //var obj = _bulletsPool.Get();
-                //if (obj != null)
-                //{
-                //    var temAmmunition = obj.GetComponent<Rigidbody>();//
-                //                                                      // var temAmmunition = GameObject.Instantiate(_bullet, _startShotPosition.position, _startShotPosition.rotation).GetComponent<Rigidbody>();
-                //    temAmmunition.gameObject.SetActive(true);
-                //    temAmmunition.AddForce(_startShotPosition.up * _shootForce);
-                //}
-                //_bulletsPool.ReturnToPool(obj);
-                #endregion
-            }
-
         }
+        private void VerticalInput()
+        {
+            _inputDirVertical = Input.GetAxis("Vertical");
+        }
+        private void HorizontalInput()
+        {
+            _inputDirHorizontal = Input.GetAxis("Horizontal");
+        }
+
         private void FixedUpdate()
         {
             RbMove();
@@ -88,9 +92,5 @@ namespace Asteroids
         {
             _ship.Move(_inputDirHorizontal, _inputDirVertical);
         }
-        //private void OnDestroy()
-        //{
-        //    _bulletsPool.Dispose();
-        //}
     }
 }

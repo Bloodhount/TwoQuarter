@@ -25,9 +25,7 @@ namespace Asteroids
         }
         private void OnCollisionEnter(Collision collision)
         {
-
-            //  BulletsPool.ReturnToPool(gameObje);
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }
