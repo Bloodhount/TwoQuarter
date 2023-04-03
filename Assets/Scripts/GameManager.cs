@@ -51,8 +51,14 @@ namespace Asteroids
             unitFactoryFacade.NumButton4(gameObject);
             //_______________________________________________
             if (Input.GetKeyDown(KeyCode.Alpha9))
-            { // ДЗ_5. Урок 6. Структурные шаблоны. Task'a -5. Разделить создания объектов для игры Астероиды и обернуть их ФАСАДОМ 
-                facadeGenration.Initialized();
+            {
+                if (!gameObject.GetComponent<EnemiesPool>().enabled)
+                {
+                    gameObject.GetComponent<EnemiesPool>().enabled = true;
+                }
+
+                //// ДЗ_5. Урок 6. Структурные шаблоны. Task'a -5. Разделить создания объектов для игры Астероиды и обернуть их ФАСАДОМ 
+                //facadeGenration.Initialized();
             }
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
