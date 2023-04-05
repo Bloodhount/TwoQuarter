@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public class PlayerPursuit : MonoBehaviour
+    public sealed class PlayerPursuit : MonoBehaviour
     {
         [SerializeField] private float _speedMin = 1f;
         [SerializeField] private float _speedMax = 2f;
