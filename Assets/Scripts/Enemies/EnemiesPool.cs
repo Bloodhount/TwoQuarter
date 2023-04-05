@@ -6,26 +6,56 @@ namespace Asteroids
 {
     public class EnemiesPool : MonoBehaviour
     {
-        public static EnemiesPool instance;
         [SerializeField] private List<GameObject> _poolObjects = new List<GameObject>();
         [SerializeField] private GameObject _prefab;
-
         [SerializeField] private Transform _startPosition;
+
         [SerializeField] private int _ObjectsAmount = 10;
 
-        private void Awake()
+        private static EnemiesPool _instance;
+        public static EnemiesPool Instance
         {
-            if (instance == null)
+            get
             {
-                instance = this;
+                if (!_instance)
+                {
+                    var singleton = new GameObject();
+                    var enemiesPool = singleton.AddComponent<EnemiesPool>();
+                    _instance = enemiesPool;
+                }
+                return _instance;
             }
         }
+        private void Awake()
+        {
+            if (_instance)
+            {
+                Destroy(this);
+                return;
+            }
+            _instance = this; // DontDestroyOnLoad(this);
+        }
         private void Start()
+        {
+            InitEnemiesPool();
+        }
+        private void InitEnemiesPool()
         {
             int random = Random.Range(-3, 6);
             for (int i = 0; i < _ObjectsAmount; i++)
             {
                 GameObject obj = Instantiate(_prefab, _startPosition.position, _startPosition.rotation);
+                obj.SetActive(true);
+                _startPosition.position = new Vector3(random, random, -1);
+                _poolObjects.Add(obj);
+            }
+        }
+        private void InitEnemiesPool(int enemyAmount, GameObject prefab, Transform spawnPos)
+        {
+            int random = Random.Range(-3, 6);
+            for (int i = 0; i < enemyAmount; i++)
+            {
+                GameObject obj = Instantiate(prefab, spawnPos.position, spawnPos.rotation);
                 obj.SetActive(true);
                 _startPosition.position = new Vector3(random, random, -1);
                 _poolObjects.Add(obj);
@@ -54,9 +84,9 @@ namespace Asteroids
 
         public void ReturnToPool(GameObject gameObject)
         {
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
             //_poolObjects.Push(gameObject);
-            // transform.SetParent(Enemy);
+            //transform.SetParent(Enemy);
         }
         public void Dispose()
         {

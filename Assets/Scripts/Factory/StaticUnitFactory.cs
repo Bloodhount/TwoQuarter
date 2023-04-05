@@ -6,22 +6,29 @@ namespace Asteroids.Factories
     {
         //[SerializeField] private Texture _texture;
         // TODO enemy: -> unit
-        public static Enemy CreateEnemy()
-        {
-            return new Enemy();
-        }
-        public static Unit CreateUnit()
+        //public static Enemy CreateEnemy()
+        //{
+        //    return new Enemy();
+        //}
+        public static Unit CreateUnit(Sprite spriteTest) // CreateUnit()
         {
             var go = new GameObject();
             go.transform.position = new Vector3(0, 0, -1);
-            go.name = "StaticUnitFactory new Unit";
-            var unit = go.AddComponent<Unit>(); 
-            Sprite sprite111 = Resources.Load<Sprite>("Prefabs/asteroids1");
-            go.AddComponent<SpriteRenderer>().sprite =sprite111;// Resources.Load<Sprite>("Prefabs/asteroids1");
-            //Texture2D texture = GameObject.Find("asteroids1").GetComponentInChildren<Texture2D>();
-            //go.AddComponent<SpriteRenderer>().sprite = Sprite.Create(texture, new Rect(0, 0, 200, 200), Vector2.zero);
-            //var unit = new Unit();              
+            go.name = "StaticUnitFactory. new Unit";
+            var unit = go.AddComponent<Unit>();
             unit.Config("fafsfdsa");
+            // var sprite111 = Resources.Load<Sprite>("Prefabs/asteroids01");
+            go.AddComponent<SpriteRenderer>();
+            go.GetComponentInChildren<SpriteRenderer>().sprite = spriteTest;
+
+            go.AddComponent<DestroySelfGO>();
+            go.GetComponent<DestroySelfGO>()._timeToSelfdestruct = 5;
+
+            go.AddComponent<UnitAsterFactory>(); // .TestUnitAdapter3();
+            go.GetComponent<UnitAsterFactory>().InitUnit(go.GetComponent<Unit>(), go.transform);
+            // go.GetComponent<UnitAsterFactory>().TestUnitAdapter();
+
+            // Debug.Log(" sprite111 = " + sprite111);            
             Debug.Log(unit.name);
             return unit;
         }

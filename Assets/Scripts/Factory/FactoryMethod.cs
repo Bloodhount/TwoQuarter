@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Adapter;
 using UnityEngine;
 
 namespace Asteroids.Factories
@@ -19,7 +20,7 @@ namespace Asteroids.Factories
             var enemy = _enemyFactory.GetEnemy();
         }
 
-         EnemyBaseFactory _enemyFactoryServer = new ServerEnemyFactory(); 
+        EnemyBaseFactory _enemyFactoryServer = new ServerEnemyFactory();
         public void StartServerGame()
         {
             var enemy = _enemyFactoryServer.GetEnemy();
@@ -27,10 +28,12 @@ namespace Asteroids.Factories
     }
     public class ClientEnemyFactory : EnemyBaseFactory
     {
+        private Transform _playerTransform;
         protected override IEnemy CreateEnemy()
         {
+            // TODO
             IEnemy enemy = new Enemy();
-            enemy.Attack();
+            // use  some mandatory for interface IEnemy methods
             return enemy;
         }
     }
@@ -38,8 +41,9 @@ namespace Asteroids.Factories
     {
         protected override IEnemy CreateEnemy()
         {
+            // TODO
             IEnemy enemy = new Enemy(); // not using view
-            enemy.Attack();
+            //  enemy.EnemyAttack();
             return enemy;
         }
     }
@@ -49,6 +53,11 @@ namespace Asteroids.Factories
         {
             return CreateEnemy();
         }
+        //public IAttack GetIAttack()
+        //{
+        //    IAttack enemy = new Enemy();
+        //    return enemy;
+        //}
         protected abstract IEnemy CreateEnemy();
 
         #region other methods to do stuff with created enemies

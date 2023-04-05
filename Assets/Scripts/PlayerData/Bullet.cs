@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public class Bullet : MonoBehaviour
+    public sealed class Bullet : MonoBehaviour
     {
         [SerializeField] private float Timer = 2f;
         public void Start()
@@ -25,9 +25,7 @@ namespace Asteroids
         }
         private void OnCollisionEnter(Collision collision)
         {
-
-            //  BulletsPool.ReturnToPool(gameObje);
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }
