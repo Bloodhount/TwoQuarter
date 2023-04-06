@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public class Unit : MonoBehaviour, IUnit // , IAttack
+    public class Unit : MonoBehaviour, IUnit // , IAttack, IMove
     {
         private string _name = string.Empty;
         private string _Type = string.Empty;
