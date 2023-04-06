@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Debug;
+=======
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
 
 namespace Command
 {
@@ -36,40 +42,67 @@ namespace Command
             {
                 if (_buttonW.TryExecute())
                 {
+<<<<<<< HEAD
                     AddToList(_buttonW);
+=======
+                    _oldCommands.Add(_buttonW);
+                    _stringCommandsView.Add(_buttonW.ToString());
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
                 }
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 if (_buttonS.TryExecute())
                 {
+<<<<<<< HEAD
                     AddToList(_buttonS);
+=======
+                    _oldCommands.Add(_buttonS);
+                    _stringCommandsView.Add(_buttonS.ToString());
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
                 }
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
                 if (_buttonA.TryExecute())
                 {
+<<<<<<< HEAD
                     AddToList(_buttonA);
+=======
+                    _oldCommands.Add(_buttonA);
+                    _stringCommandsView.Add(_buttonA.ToString());
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
                 }
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 if (_buttonD.TryExecute())
                 {
+<<<<<<< HEAD
                     AddToList(_buttonD);
+=======
+                    _oldCommands.Add(_buttonD);
+                    _stringCommandsView.Add(_buttonD.ToString());
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
                 }
             }
             if (Input.GetKeyDown(KeyCode.B))
             {
                 if (_buttonB.TryExecute())
                 {
+<<<<<<< HEAD
                     AddToList(_buttonB);
+=======
+                    _oldCommands.Add(_buttonB);
+                    _stringCommandsView.Add(_buttonB.ToString());
+
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
                 }
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 _buttonZ.TryExecute();
+<<<<<<< HEAD
                 if (_stringCommandsView.Count > 0)
                 {
                     _stringCommandsView.RemoveAt(_stringCommandsView.Count - 1);
@@ -100,5 +133,13 @@ namespace Command
                 Log(".MoveRight");
             }
         }
+=======
+                if (_stringCommandsView.Count != 0)
+                {
+                    _stringCommandsView.RemoveAt(_stringCommandsView.Count - 1);
+                }
+            }
+        }
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
     }
 }
