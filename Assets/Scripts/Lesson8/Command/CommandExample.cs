@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using ChainOfResponsibility;
 
 namespace Command
 {
@@ -16,7 +17,6 @@ namespace Command
             _rightButton = GameObject.Find("ButtonRight").GetComponent<Button>();
             obj = Instantiate(InputHandler, Vector3.zero, Quaternion.identity);
         }
-
         private void OnEnable()
         {
             _leftButton.onClick.AddListener(MoveLeftHandler);

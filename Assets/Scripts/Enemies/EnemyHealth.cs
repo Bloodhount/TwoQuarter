@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Adapter;
 using UnityEngine;
 using static UnityEngine.Debug;
 
@@ -7,7 +6,7 @@ namespace Asteroids
 {
     public class EnemyHealth : BaseHealth
     {
-        [SerializeField] private int _health; // for test, after set stealth
+        [SerializeField] private int _health; 
         [SerializeField] private int _maxHealth = 2;
 
         [SerializeField] private Transform HealthBarPrefabRoot;
@@ -38,17 +37,18 @@ namespace Asteroids
         {
             gameObject.SetActive(false);
             _healthBar.gameObject.SetActive(false);
-            // Destroy(_healthBar.gameObject);
         }
         public void ActivateHpBar()
         {
             _healthBar.gameObject.SetActive(true);
-            _health = _maxHealth; Debug.LogWarning("ActivateHpBar");
+            _health = _maxHealth;
             _healthBar.SetHealth(_health, _maxHealth);
+            Log("ActivateHpBar");
         }
         private void OnCollisionEnter(Collision collision)
         {
             TakeDamage(1);
+            GetComponent<EnemyAdapter>().UniversalAttack(gameObject.transform.position);
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Asteroids;
 using UnityEngine;
 
@@ -12,7 +10,7 @@ namespace Adapter
 
         public void UniversalAttack(Vector3 position)
         {
-            enemy.EnemyAttack(position, Direction);
+            enemy.EnemyAttack(position, Direction); Debug.Log($" {name}. UniversalAttack");
         }
     }
 }

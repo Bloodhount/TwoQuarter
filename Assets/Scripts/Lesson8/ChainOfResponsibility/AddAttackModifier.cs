@@ -8,7 +8,7 @@ namespace ChainOfResponsibility
 
         public AddAttackModifier(Enemy enemy, int attack) : base(enemy)
         {
-            _attack = _attack;
+            _attack = attack;
         }
         public override void Handle()
         {

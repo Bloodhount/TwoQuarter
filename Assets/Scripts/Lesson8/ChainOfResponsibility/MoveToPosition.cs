@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ChainOfResponsibility
@@ -15,7 +13,6 @@ namespace ChainOfResponsibility
             StartCoroutine(StartMoving());
             return this;
         }
-
         private IEnumerator StartMoving()
         {
             while ((transform.position - _positionToMove).sqrMagnitude > 0f)
