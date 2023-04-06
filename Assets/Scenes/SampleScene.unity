@@ -625,14 +625,21 @@ GameObject:
   m_Component:
   - component: {fileID: 539488781}
   - component: {fileID: 539488780}
+<<<<<<< HEAD
   - component: {fileID: 539488782}
+=======
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
   m_Layer: 0
   m_Name: CommandExampleGO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
 --- !u!114 &539488780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +647,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539488779}
+<<<<<<< HEAD
   m_Enabled: 0
+=======
+  m_Enabled: 1
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eac2bb56b8ffa345aa677005fe1a338, type: 3}
   m_Name: 
@@ -659,6 +670,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &539488782
@@ -677,6 +689,10 @@ MonoBehaviour:
   - {fileID: 67399025}
   - {fileID: 896246001}
   - {fileID: 1202289452}
+=======
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
 --- !u!1 &573861361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,7 +1901,11 @@ MonoBehaviour:
   _poolObjects: []
   _prefab: {fileID: 1318425729131330378, guid: 2e54fa248d8ee08469b8ec02e5ecacb0, type: 3}
   _startPosition: {fileID: 1563409630}
+<<<<<<< HEAD
   _ObjectsAmount: 1
+=======
+  _ObjectsAmount: 22
+>>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
 --- !u!114 &1563409634
 MonoBehaviour:
   m_ObjectHideFlags: 0
