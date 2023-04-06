@@ -1,89 +1,107 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 namespace Interpreter
 {
     public class InterpreterScores : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _text;
-        // [SerializeField] private TextMeshProUGUI _textTotalScores;
+        [SerializeField] private TextMeshProUGUI _textTotalScore;
+        [SerializeField] private TextMeshProUGUI _textTotalScoreTest;
+        [SerializeField] private TextMeshProUGUI _textAddScore;
 
-        int scores = 0;
-        public void Interpret(string value) // (string value) 
+        long scores = 0;
+        public void Interpret(string value)
         {
             if (int.TryParse(value, out var number))
             {
                 scores += number;
-                _text.text = "  " + StringConverter(scores);
+                _textAddScore.text = "  " + StringConverter(scores);
             }
-            //_textTotalScores.text = scores.ToString();
         }
-        public void Interpret(int value) // (string value) 
+        public void Interpret(long value)
         {
+            _textAddScore.GetComponent<TextMeshProUGUI>().alpha = 255;
+            _textAddScore.text = " + " + value;
 
             scores += value;
-            _text.text = "  " + StringConverter(scores);
-            //  _textTotalScores.text = scores.ToString();
+            string tmp = StringConverter(scores);
+            //String.Format(tmp);  Console.WriteLine("{0:D7}",12345);
+            _textTotalScoreTest.text = $"  {scores} ";
+            _textTotalScore.text = "  " + StringConverter(scores);
+
+            Invoke(nameof(SetAlpha), 1.5f);
+        }
+        void SetAlpha()
+        {
+            _textAddScore.GetComponent<TextMeshProUGUI>().alpha = 0;
         }
 
-        private string StringConverter(int number)
+        private static string StringConverter(long number)
         {
-            if (number < 0 || number > 100000000)
+            if (number < 0 || number > 10000000000000)
             {
-                return "incorrect data, enter a number from 0 to 10000";
+                return "incorrect data, enter a number from 0 to 10.000.000.000.000";
             }
-
-            //if (number > 950 || number < 1200) return " 1K ";
-            //if (number > 1200 || number < 1700) return " 1.5K ";
-            //if (number > 1700 || number < 2200) return " 2K ";
-            //if (number is > 2200 or < 2700) return " 2.5K ";
-            //if (number is > 2700 or < 3200) return " 2K ";
 
             return ValidateArgument(number);
-            return string.Empty;
         }
-        static string ValidateArgument(int number)
+        static string ValidateArgument(long number)
         {
-            float curr = number / 1000;
-            float min = curr * 0.7f;
-            float max = curr * 1.2f;
-            if (curr > min || curr < max)
-            {
-                if (curr >= 1000)
-                {
-                    return $" {curr} M ";
-                }
-                return $" {curr} K ";
-            }
+           // float curr = number / 1000;
+            //float min = curr * 0.5f;
+            //float max = curr * 2.2f;
 
+            if (number >= 1000000000000)
+            {
+                float curr = number;
+                var tmp = curr / 1000000000000;
+                return $" {tmp.ToString("0.0")} T";
+            }
+            else if (number >= 1000000000)
+            {
+                float curr = number ;
+                var tmp = curr / 1000000000;
+                return $" {tmp.ToString("0.00")} B";
+            }
+            else if (number >= 1000000) // (curr > min || curr < max)
+            {
+                float curr = number ;
+                var tmp = curr / 1000000;
+                return $" {tmp.ToString("0.00")} M";
+                // return $" {tmp.ToString("0.0")} K ";
+                // _textTotalScoreTest.text = $"  {scores} ";
+                // return $" {number.ToString("0.0")} K ";
+                //return $" {curr.ToString("0.0")} K ";
+                //return $" {curr.ToString("0.0")} K ";
+            }
+            else if(number >= 1000)
+            {
+                float curr = number;
+                var tmp = curr / 1000;
+                return $" {tmp.ToString("0.00")} K";
+            }
+            else if (number >= 1)
+            {
+                return $" {number}  ";
+            }
 
             return string.Empty + "string.Empty";
         }
-        static string ValidateArgument(int[] number)
-        {
-            int count = number.Length;
-
-            for (int i = 0; i < count; i++)
-            {
-                //if (number is > 2200 or < 2700)
-                //{
-                //   // " 2.5K ";
-                //}
-                float inNum = number[i];
-                float curr = inNum / 1000;
-
-                float min = count * 0.7f;
-                float max = count * 1.2f;
-                if (curr > min || curr < max)
-                {
-                    return $" {curr} K ";
-                    count++;
-                }
-            }
-            return string.Empty + "string.Empty";
-        }
-        //string s = ValidateArgument(number);
+        /*
+            тыс€ча      (тыс.) 	            	10^3 	10^3
+            миллион     (млн) 	million     	10^6 	10^6
+            миллиард    (млрд) 	milliard    	10^9 	10^9
+            биллион         	billion     	10^9 	10^12
+            биллиард        	billiard         	Ч 	10^15
+            триллион    (трлн) 	trillion 	    10^12 	10^18
+            триллиард       	trilliard       	Ч 	10^21
+            квадриллион     	quadrillion 	10^15 	10^24 
+            квадриллиард    	quadrilliard    	Ч 	10^27
+            квинтиллион 	    quintillion 	10^18 	10^30 
+         */
     }
 }

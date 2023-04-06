@@ -7,7 +7,8 @@ namespace Asteroids
 {
     public class EnemyHealth : BaseHealth
     {
-        [SerializeField] private int _scoreValue = 12550;
+        [SerializeField] private long _minScoreValue = 33;
+        [SerializeField] private long _maxScoreValue = 3333;
         [SerializeField] private int _health;
         [SerializeField] private int _maxHealth = 2;
 
@@ -39,7 +40,7 @@ namespace Asteroids
         public override void Die()
         {
             gameObject.SetActive(false);
-            _healthBar.gameObject.SetActive(false); interpreterScores.Interpret(_scoreValue);
+            _healthBar.gameObject.SetActive(false); interpreterScores.Interpret((long)Random.Range(_minScoreValue, _maxScoreValue));
         }
         public void ActivateHpBar()
         {

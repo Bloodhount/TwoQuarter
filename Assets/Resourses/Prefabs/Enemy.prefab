@@ -143,7 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10a832bf39d5e041b5b7caefbb511f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreValue: 55550
+  _minScoreValue: 21474836470
+  _maxScoreValue: 214820810300
   _health: 2
   _maxHealth: 3
   HealthBarPrefab: {fileID: 3397840154012935470, guid: f6b52a40e65cce84c934aa447b12bd7e, type: 3}
