@@ -1,4 +1,5 @@
 using Adapter;
+using Interpreter;
 using UnityEngine;
 using static UnityEngine.Debug;
 
@@ -6,13 +7,14 @@ namespace Asteroids
 {
     public class EnemyHealth : BaseHealth
     {
-        [SerializeField] private int _health; 
+        [SerializeField] private int _scoreValue = 12550;
+        [SerializeField] private int _health;
         [SerializeField] private int _maxHealth = 2;
 
+        public GameObject HealthBarPrefab;
         [SerializeField] private Transform HealthBarPrefabRoot;
         private HealthBar _healthBar;
-
-        public GameObject HealthBarPrefab;
+        private InterpreterScores interpreterScores;
         private void Awake()
         {
             GameObject healthBar = Instantiate(HealthBarPrefab, HealthBarPrefabRoot);
@@ -21,6 +23,7 @@ namespace Asteroids
         }
         private void Start()
         {
+            interpreterScores = FindObjectOfType<InterpreterScores>();
             _health = _maxHealth;
         }
         public void TakeDamage(int damageValue)
@@ -36,7 +39,7 @@ namespace Asteroids
         public override void Die()
         {
             gameObject.SetActive(false);
-            _healthBar.gameObject.SetActive(false);
+            _healthBar.gameObject.SetActive(false); interpreterScores.Interpret(_scoreValue);
         }
         public void ActivateHpBar()
         {
