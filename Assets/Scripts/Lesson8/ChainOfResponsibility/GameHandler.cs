@@ -2,11 +2,8 @@
 
 namespace ChainOfResponsibility
 {
-<<<<<<< HEAD
     public  class GameHandler : MonoBehaviour, IGameHandler
-=======
-    public abstract class GameHandler : MonoBehaviour, IGameHandler
->>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
+
     {
         private IGameHandler _nextHandler;
 

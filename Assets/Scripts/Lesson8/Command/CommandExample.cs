@@ -1,18 +1,10 @@
-<<<<<<< HEAD
 using UnityEngine;
 using UnityEngine.UI;
-using ChainOfResponsibility;
-=======
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
->>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
 
 namespace Command
 {
     public class CommandExample : MonoBehaviour
     {
-<<<<<<< HEAD
         [SerializeField] public InputHandler InputHandler;
         private Button _leftButton;
         private Button _rightButton;
@@ -38,18 +30,11 @@ namespace Command
         {
             obj.MoveLeft();
             Debug.Log("MoveLeftHandler");
-
         }
         public void MoveRightHandler()
         {
             obj.MoveRight();
             Debug.Log("MoveRightHandler");
-=======
-        public InputHandler InputHandler;
-        void Start()
-        {
-            Instantiate(InputHandler);
->>>>>>> 5ba6a86a4c2a6219ca716ca62a822a543072ed69
         }
     }
 }
