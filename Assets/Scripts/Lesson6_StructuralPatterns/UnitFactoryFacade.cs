@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Asteroids;
 using Adapter;
+using Asteroids;
 using Asteroids.Factories;
 using UnityEngine;
 using static UnityEngine.Debug;
@@ -22,8 +20,28 @@ namespace Facade
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Unit unit = StaticUnitFactory.CreateUnit(goSprite); 
-                //unit.Invoke(nameof(unit.UnitAttack),1);
+                GameObject unitGO = StaticUnitFactory.CreateUnit(goSprite);
+
+                if (unitGO.gameObject.TryGetComponent(out UnitAdapter unitAdapter))
+                {
+                    IUnit _unit = null;
+                    if (unitGO.gameObject.TryGetComponent(out Unit unitComponent))
+                    {
+                        _unit = unitComponent;
+
+                        _unit.UnitAttack(unitGO.transform.position, 2);
+                        Log($"<color=yellow> IUnit <color=red>_unit</color> =  unit </color> " +
+                            $"<color=red>_unit.UnitAttack</color><color=green>" +
+                            $"(go.position<color=white>{unitGO.transform.position}</color>, radius attack:...</color>");
+                    }
+
+                    unitAdapter.UnitInit(_unit, 2);
+                    unitAdapter.UniversalAttack(unitGO.transform.position);
+                    unitAdapter.UniversalAttack(unitGO.transform.position);
+                    Log($"<color=yellow> ... <color=red>unitAdapter</color> ... </color> " +
+                        $"<color=red>UniversalAttack</color><color=green>" +
+                        $"(go.position<color=white>{unitGO.transform.position}</color>, radius attack:...</color>");
+                }
             }
         }
 
@@ -33,9 +51,12 @@ namespace Facade
             {
                 countCreateAsUn++;
                 var un = uGO.CreateAsUn();
-                un.name = un.name + $" {countCreateAsUn}";
-                Log(un.name);
-                un.UnitAttack(un.transform.position, 3);
+                if (un != null)
+                {
+                    un.name = un.name + $" {countCreateAsUn}";
+                    Log(un.name);
+                    un.UnitAttack(un.transform.position, 3);
+                }
             }
         }
 
@@ -46,17 +67,12 @@ namespace Facade
                 countCreateAsUn++;
                 var un = uGO.CreateAsUn();
                 un.name = un.gameObject.name + $" {countCreateAsUn}";
-                Log($"<color=yellow>{enterGo.name}</color> . <color=red>{un.name}</color>");
-                var unitAsterFactory1 = enterGo.gameObject.GetComponent<UnitAsterFactory>();  // new UnitAsterFactory();
+                var unitAsterFactory1 = enterGo.gameObject.GetComponent<UnitAsterFactory>();
                 if (un != null)
                 {
-                    Log($" <color=red> {unitAsterFactory1.name}... </color>");
                     unitAsterFactory1.TestUnitAdapter2(un, un.transform.position);
                 }
-                else
-                {
-                    Log(" <color=red>obj is null </color>");
-                }
+
             }
         }
 
@@ -67,16 +83,9 @@ namespace Facade
                 countCreateAsUn++;
                 var un = uGO.CreateAsUn();
                 un.name = un.gameObject.name + $" {countCreateAsUn}";
-                Log($"<color=yellow>{enterGo.name}</color> . <color=red>{un.name}</color>");
-                var unitAsterFactory1 = enterGo.gameObject.GetComponent<UnitAsterFactory>();
-                if (un != null)
+                if (enterGo.TryGetComponent(out UnitAsterFactory unitAsterFactory))
                 {
-                    Log($" <color=red> {unitAsterFactory1.name}... </color>");
-                    unitAsterFactory1.TestUnitAdapter3(un);
-                }
-                else
-                {
-                    Log(" <color=red>obj is null </color>");
+                    unitAsterFactory.TestUnitAdapter3(un);
                 }
             }
         }

@@ -5,27 +5,40 @@ namespace Asteroids.Factories
 {
     public static class StaticUnitFactory
     {
-        public static Unit CreateUnit(Sprite spriteTest)
+        public static GameObject CreateUnit(Sprite spriteTest) 
         {
             var go = new GameObject();
-            go.transform.position = new Vector3(0, 0, -1);
-            go.name = "StaticUnitFactory. CreateUnit new Unit !";
-            var unit = go.AddComponent<Unit>();
-            unit.Config("fafsfdsa");
+            go.transform.position = new Vector3(10, 0, -1);
+            go.name = "StaticUnitFactory CreateUnit name \"new Unit\" !";
+
+            go.AddComponent<Unit>();
+
             go.AddComponent<SpriteRenderer>();
-            go.GetComponentInChildren<SpriteRenderer>().sprite = spriteTest;
+            if (go.TryGetComponent(out SpriteRenderer spriteComponent))
+            {
+                spriteComponent.sprite = spriteTest;
+            }
 
             go.AddComponent<DestroySelfGO>();
-            go.GetComponent<DestroySelfGO>()._timeToSelfdestruct = 5;
+            if (go.TryGetComponent(out DestroySelfGO destroySelfComponent))
+            {
+                int timeTodestruct = 5;
+                destroySelfComponent._timeToSelfdestruct = timeTodestruct;
+            }
 
             go.AddComponent<UnitAsterFactory>();
-            go.GetComponent<UnitAsterFactory>().InitUnit(go.GetComponent<Unit>(), go.transform);
+            if (go.TryGetComponent(out UnitAsterFactory unitAsterFactoryComponent))
+            {
+                if (unitAsterFactoryComponent.TryGetComponent(out Unit unitComponent))
+                {
+                    unitAsterFactoryComponent.InitUnit(unitComponent, go.transform);
+                }
+            }
 
             go.AddComponent<UnitAdapter>();
-            //go.GetComponent<UnitAdapter>().UniversalAttack(go.transform.position);
 
-            Debug.Log(unit.name);
-            return unit;
+            Debug.Log("<color=yellow>go.name </color>" + $"<color=green>{go.name} </color>");
+            return go;
         }
     }
 }

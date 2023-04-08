@@ -1,17 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Adapter;
 using UnityEngine;
 
 namespace Asteroids
 {
-    public class Unit : MonoBehaviour, IUnit // , IAttack, IMove
+    public class Unit : MonoBehaviour, IUnit 
     {
         private string _name = string.Empty;
         private string _Type = string.Empty;
-        //private string _name = String.Empty;
-        //private string _Type = String.Empty;
+
         private EnemyHealth health;
 
         public void Config(string name)
@@ -19,12 +14,8 @@ namespace Asteroids
             _name = name;
             health = new EnemyHealth();
             _Type = GetType().ToString();
-            // health.GetHP
         }
-        //public void CreateAsteroidUnit()
-        //{
 
-        //}
         public void UnitAttack(Vector3 position, float radius)
         {
             Debug.Log($" class Unit, <color=yellow> GO:  {name} ,</color>" +
