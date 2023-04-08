@@ -127,8 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9018993c4d756049ab6b26262837953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
+  Attack: 0
+  Defence: 0
   _asteroidPrefab: {fileID: 3692776855680869083, guid: 9b742a08ce45b324391d6ec669858112, type: 3}
-  res: {fileID: 0}
 --- !u!114 &1691396136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,10 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10a832bf39d5e041b5b7caefbb511f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minScoreValue: 21474836470
+  _maxScoreValue: 214820810300
   _health: 2
   _maxHealth: 3
-  HealthBarPrefabRoot: {fileID: 1318425729468199686}
   HealthBarPrefab: {fileID: 3397840154012935470, guid: f6b52a40e65cce84c934aa447b12bd7e, type: 3}
+  HealthBarPrefabRoot: {fileID: 1318425729468199686}
 --- !u!114 &2739845639917616565
 MonoBehaviour:
   m_ObjectHideFlags: 0

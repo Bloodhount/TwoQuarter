@@ -1,30 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
-using Asteroids;
 using UnityEngine;
 
 namespace ChainOfResponsibility
 {
     public class ChainOfResponsibilityExample : MonoBehaviour
     {
-        [SerializeField] private List<GameHandler> _gamaHandlers;
-        public void ChainOfResponsibilityExample1()
-        {
-            _gamaHandlers[0].Handle();
-            for (int i = 0; i < _gamaHandlers.Count; i++)
-            {
-                _gamaHandlers[i - 1].SetNext(_gamaHandlers[i]);
-            }
-        }
-        public void ChainOfResponsibilityExample2()
-        {
-            var enemy = new Enemy();
+        [SerializeField] private List<GameHandler> _gameHandlers;
 
-            var root = new EnemyModifier(enemy);
-            root.Add(new AddAttackModifier(enemy,2));
-            root.Add(new AddAttackModifier(enemy,5));
-            root.Add(new AddDefenceModifier(enemy,20));
-            root.Handle();
+        [ContextMenu("ChainOfResponsibility_1")]
+        public void ChainOfResponsibilityExampleMethod1()
+        {
+            _gameHandlers[0].Handle();
+            for (int i = 0; i < _gameHandlers.Count; i++)
+            {
+                // _gameHandlers[i].SetNext(_gameHandlers[i - 1]);
+                // _gameHandlers[i - 1].SetNext(_gameHandlers[i]);
+                _gameHandlers[i].SetNext(_gameHandlers[i + 1]);
+            }
         }
     }
 }

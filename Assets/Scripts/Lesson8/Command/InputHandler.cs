@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Debug;
 
 namespace Command
 {
@@ -36,50 +36,68 @@ namespace Command
             {
                 if (_buttonW.TryExecute())
                 {
-                    _oldCommands.Add(_buttonW);
-                    _stringCommandsView.Add(_buttonW.ToString());
+                    AddToList(_buttonW);
                 }
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 if (_buttonS.TryExecute())
                 {
-                    _oldCommands.Add(_buttonS);
-                    _stringCommandsView.Add(_buttonS.ToString());
+                    AddToList(_buttonS);
                 }
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
                 if (_buttonA.TryExecute())
                 {
-                    _oldCommands.Add(_buttonA);
-                    _stringCommandsView.Add(_buttonA.ToString());
+                    AddToList(_buttonA);
                 }
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 if (_buttonD.TryExecute())
                 {
-                    _oldCommands.Add(_buttonD);
-                    _stringCommandsView.Add(_buttonD.ToString());
+                    AddToList(_buttonD);
                 }
             }
             if (Input.GetKeyDown(KeyCode.B))
             {
                 if (_buttonB.TryExecute())
                 {
-                    _oldCommands.Add(_buttonB);
-                    _stringCommandsView.Add(_buttonB.ToString());
-
+                    AddToList(_buttonB);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
+            if (Input.GetKeyDown(KeyCode.Z)) 
+                {
                 _buttonZ.TryExecute();
-                if (_stringCommandsView.Count != 0)
+                if (_stringCommandsView.Count > 0)
                 {
                     _stringCommandsView.RemoveAt(_stringCommandsView.Count - 1);
+                    Log(_buttonZ + ". " + _oldCommands.GetType().Name);
                 }
+            }
+        }
+
+        public void AddToList(ICommand button)
+        {
+            _oldCommands.Add(button);
+            _stringCommandsView.Add(button.ToString());
+            Log("AddToList. " + button);
+        }
+        public void MoveLeft()
+        {
+            if (_buttonA.TryExecute())
+            {
+                AddToList(_buttonA);
+                Log(".MoveLeft");
+            }
+        }
+        public void MoveRight()
+        {
+            if (_buttonD.TryExecute())
+            {
+                AddToList(_buttonD);
+                Log(".MoveRight");
             }
         }
     }

@@ -22,8 +22,8 @@ namespace Facade
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Unit unit = StaticUnitFactory.CreateUnit(goSprite); // Log("");
-                unit.GetComponent<UnitAsterFactory>().TestUnitAdapter(); // Break();
+                Unit unit = StaticUnitFactory.CreateUnit(goSprite); 
+                //unit.Invoke(nameof(unit.UnitAttack),1);
             }
         }
 

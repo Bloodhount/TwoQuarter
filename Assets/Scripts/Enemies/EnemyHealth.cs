@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using Adapter;
+using Interpreter;
 using UnityEngine;
 using static UnityEngine.Debug;
 
@@ -7,13 +7,15 @@ namespace Asteroids
 {
     public class EnemyHealth : BaseHealth
     {
-        [SerializeField] private int _health; // for test, after set stealth
+        [SerializeField] private long _minScoreValue = 33;
+        [SerializeField] private long _maxScoreValue = 3333;
+        [SerializeField] private int _health;
         [SerializeField] private int _maxHealth = 2;
 
+        public GameObject HealthBarPrefab;
         [SerializeField] private Transform HealthBarPrefabRoot;
         private HealthBar _healthBar;
-
-        public GameObject HealthBarPrefab;
+        private InterpreterScores interpreterScores;
         private void Awake()
         {
             GameObject healthBar = Instantiate(HealthBarPrefab, HealthBarPrefabRoot);
@@ -22,6 +24,7 @@ namespace Asteroids
         }
         private void Start()
         {
+            interpreterScores = FindObjectOfType<InterpreterScores>();
             _health = _maxHealth;
         }
         public void TakeDamage(int damageValue)
@@ -37,18 +40,19 @@ namespace Asteroids
         public override void Die()
         {
             gameObject.SetActive(false);
-            _healthBar.gameObject.SetActive(false);
-            // Destroy(_healthBar.gameObject);
+            _healthBar.gameObject.SetActive(false); interpreterScores.Interpret((long)Random.Range(_minScoreValue, _maxScoreValue));
         }
         public void ActivateHpBar()
         {
             _healthBar.gameObject.SetActive(true);
-            _health = _maxHealth; Debug.LogWarning("ActivateHpBar");
+            _health = _maxHealth;
             _healthBar.SetHealth(_health, _maxHealth);
+            Log("ActivateHpBar");
         }
         private void OnCollisionEnter(Collision collision)
         {
             TakeDamage(1);
+            GetComponent<EnemyAdapter>().UniversalAttack(gameObject.transform.position);
         }
     }
 }
