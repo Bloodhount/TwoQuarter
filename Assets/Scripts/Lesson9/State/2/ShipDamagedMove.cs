@@ -6,11 +6,11 @@ public class ShipDamagedMove : IShipState
 {
     public void StateOff()
     {
-       Debug.Log("ShipDamagedMove.StateOff");
+        Debug.LogWarning("<color=red>ShipDamagedMove.StateOff</color>");
     }
 
     public void StateOn()
     {
-        Debug.Log("ShipDamagedMove.StateOn");
+        Debug.LogWarning("<color=green>ShipDamagedMove.StateOn</color>");
     }
 }
