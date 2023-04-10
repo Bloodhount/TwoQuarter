@@ -7,13 +7,11 @@ namespace Asteroids
 {
     public class PlayerController : MonoBehaviour
     {
-       // [SerializeField] private Player player;
         [SerializeField] private float _shootForce = 100f;
         private Dictionary<Type, IShipState> _behaviourStates;
         private IShipState _currentShipState;
         private void Start()
         {
-            // player = new Player();
             this.InitBehaviourStates();
             this.SetDefaultState();
         }
@@ -65,13 +63,12 @@ namespace Asteroids
         {
             var state = this.GetState<ShipNormalMove>();
             this.SetState(state);
-        }
+        }   // TODO ShipNormalMove & ShipDamagedMove переделать и исп.вместо класса Ship в классе Player
         public void SetDamagedState()
         {
             var state = this.GetState<ShipDamagedMove>();
             this.SetState(state);
-        }
-
+        }   // TODO ShipNormalMove & ShipDamagedMove переделать и исп.вместо класса Ship в классе Player
 
         private void Shoot()
         {

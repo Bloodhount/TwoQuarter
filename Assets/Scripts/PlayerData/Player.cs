@@ -18,8 +18,8 @@ namespace Asteroids
         //private Dictionary<Type, IShipState> _behaviourStates;
         //private IShipState _currentShipState;
 
+        public Ship _ship;
         private Camera _camera;
-        private Ship _ship;
         private Rigidbody _playerRigidbody;
         private AccelerationMove _moveTransform;
         #endregion 
@@ -30,60 +30,8 @@ namespace Asteroids
             _moveTransform = new AccelerationMove(_playerRigidbody, _speed, _acceleration);
             var _rotation = new RotationShip(transform);
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
-            //this.InitBehaviourStates();
-            //this.SetDefaultState();
         }
 
-        #region ManagedStateRegion
-        //    private void InitBehaviourStates()
-        //{
-        //    this._behaviourStates = new Dictionary<Type, IShipState>();
-
-        //    this._behaviourStates[typeof(ShipNormalMove)] = new ShipNormalMove();
-        //    this._behaviourStates[typeof(ShipDamagedMove)] = new ShipDamagedMove();
-        //}
-        //    private void SetState(IShipState newState)
-        //{
-        //    if (this._currentShipState != null)
-        //    {
-        //        this._currentShipState.StateOff();
-        //    }
-
-        //    this._currentShipState = newState;
-        //    this._currentShipState.StateOn();
-        //}
-        //    private IShipState GetState<T>() where T : IShipState
-        //{
-        //    var type = typeof(T);
-        //    return this._behaviourStates[type];
-        //}
-        //    private void SetDefaultState()
-        //{
-        //    this.SetNormalState();
-        //}
-        //    public void SetNormalState()
-        //{
-        //    var state = this.GetState<ShipNormalMove>();
-        //    this.SetState(state);
-        //}
-        //    public void SetDamagedState()
-        //{
-        //    var state = this.GetState<ShipDamagedMove>();
-        //    this.SetState(state);
-        //}
-
-        //    private void StateInput()
-        //{
-        //    if (Input.GetKeyDown(KeyCode.O))
-        //    {
-        //        SetNormalState();
-        //    }
-        //    if (Input.GetKeyDown(KeyCode.P))
-        //    {
-        //        SetDamagedState();
-        //    }
-        //}
-        #endregion
         void Update()
         {
             PlayerInput();
