@@ -14,16 +14,10 @@ namespace Asteroids
         [SerializeField] Sprite goSprite;
         private int countCreateAsUn = 0;
         private UnitFactoryFacade unitFactoryFacade;
-       // private FacadeGenrationUnits facadeGenration; // TEST
-        //==============================
+
         BulletsPool bulletsPoolService;
         EnemiesPool enemiesPoolService;
-        //public EnemiesPool EnemiesPoolService
-        //{
-        //    get => enemiesPoolService;
-        //    set => enemiesPoolService = value;
-        //}
-        //==============================
+
         private void Start()
         {
             unitFactoryFacade = new UnitFactoryFacade(uGO, goSprite, countCreateAsUn);

@@ -4,7 +4,7 @@ namespace Observer
 {
     public interface IHit
     {
-        event Action<float> OnHitChange;
-        void Hit(float damage);
+        event Action<int> OnHitChange;
+        void TakeDamage(int damage);
     }
 }

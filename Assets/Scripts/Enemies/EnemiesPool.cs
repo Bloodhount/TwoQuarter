@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Observer;
+using TMPro;
 using UnityEngine;
 
 namespace Asteroids
@@ -48,6 +50,11 @@ namespace Asteroids
                 obj.SetActive(true);
                 _startPosition.position = new Vector3(random, random, -1);
                 _poolObjects.Add(obj);
+                if (obj.TryGetComponent(out ListenerHitShowDamage showDamageComponent))
+                {
+                    showDamageComponent._EnemyHealthLabel = GameObject.Find("Text (TMP) total score (test) (1)").GetComponent<TextMeshProUGUI>();
+                    showDamageComponent.Add(obj.GetComponent<EnemyHealth>());
+                }
             }
         }
         private void InitEnemiesPool(int enemyAmount, GameObject prefab, Transform spawnPos)
@@ -75,6 +82,7 @@ namespace Asteroids
                     _poolObjects[i].transform.position = _startVector;
                     _poolObjects[i].gameObject.GetComponent<EnemyHealth>().ActivateHpBar();
                     _poolObjects[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    _poolObjects[i].gameObject.GetComponent<EnemyHealth>().AddListenTo();
 
                     return _poolObjects[i];
                 }
