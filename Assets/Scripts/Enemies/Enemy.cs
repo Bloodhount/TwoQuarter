@@ -1,11 +1,9 @@
-using System;
-using Observer;
 using UnityEngine;
 using static UnityEngine.Debug;
 
 namespace Asteroids
 {
-    public class Enemy : MonoBehaviour, IEnemy//, IHit
+    public class Enemy : MonoBehaviour, IEnemy
     {
         public string Name;
         public int Attack;
@@ -13,8 +11,6 @@ namespace Asteroids
 
         [SerializeField] private GameObject _asteroidPrefab;
         public EnemyHealth Health { get; private set; }
-
-        //public event Action<float> OnHitChange;
 
         public void DependencyInjectHealth(EnemyHealth hp)
         {
@@ -30,10 +26,5 @@ namespace Asteroids
             Attack += attack;
             Log($" _attack = {Attack}");
         }
-
-        //void IHit.Hit(float damage)
-        //{
-        //    OnHitChange.Invoke(damage);
-        //}
     }
 }

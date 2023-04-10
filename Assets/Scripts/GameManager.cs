@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Asteroids.Factories;
 using Facade;
 using UnityEngine;
-using static UnityEngine.Debug;
 
 namespace Asteroids
 {
@@ -50,9 +45,6 @@ namespace Asteroids
                 {
                     gameObject.GetComponent<EnemiesPool>().enabled = true;
                 }
-
-                //// ДЗ_5. Урок 6. Структурные шаблоны. Task'a -5. Разделить создания объектов для игры Астероиды и обернуть их ФАСАДОМ 
-                //facadeGenration.Initialized();
             }
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {

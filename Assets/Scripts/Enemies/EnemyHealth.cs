@@ -19,9 +19,8 @@ namespace Asteroids
         [SerializeField] private Transform HealthBarPrefabRoot;
         private HealthBar _healthBar;
         private InterpreterScores interpreterScores;
-        // ListenerHitShowDamage listenerHitShowDamage;
-        IHit hit;
-        [SerializeField] public event Action<int> OnHitChange;
+        public IHit hit;
+        [SerializeField] public event Action<int, string> OnHitChange;
 
         private void Awake()
         {
@@ -33,11 +32,8 @@ namespace Asteroids
         {
             interpreterScores = FindObjectOfType<InterpreterScores>();
             _health = _maxHealth;
-            // listenerHitShowDamage = new ListenerHitShowDamage();
-            // listenerHitShowDamage._EnemyHealthLabel
             hit = this;
-            AddListenTo();
-            // listenerHitShowDamage.Add(this);
+            //  AddListenTo();
         }
 
         public void AddListenTo()
@@ -45,34 +41,49 @@ namespace Asteroids
             if (TryGetComponent(out ListenerHitShowDamage hitShowDamageComponent))
             {
                 hitShowDamageComponent.Add(hit);
-                // listenerHitShowDamage.Add(hit);
             }
         }
 
         public void TakeDamage(int damageValue)
         {
             _health -= damageValue;
-            Log("TakeDamage");
-            // hit.OnHitChange.
-            OnHitChange.Invoke(damageValue);
+
             if (_health <= 0)
             {
                 _health = 0;
                 Die();
+                if (TryGetComponent(out ListenerHitShowDamage hitShowDamageComponent))
+                {
+                    Log("TryGetComponent.Remove(");
+                    hitShowDamageComponent.Remove(hit);
+                }
             }
             _healthBar.SetHealth(_health, _maxHealth);
+            OnHitChange.Invoke(damageValue, " Take Damage");
         }
         public override void Die()
         {
+            interpreterScores.Interpret((long)UnityEngine.Random.Range(_minScoreValue, _maxScoreValue));
+
+            int getID = gameObject.GetInstanceID();
+            if (getID != null)
+            {
+                Log(getID + " Die");
+                // OnHitChange.Invoke(getID, " Die");
+                OnHitChange.Invoke(arg1: getID, arg2: " Die");
+                //void NewMethod()
+                //{
+                //    OnHitChange.Invoke(getID, " Die");
+                //}
+                //Invoke(nameof(NewMethod), 0.8f);
+            }
+            else
+            {
+                Log("else Die");
+            }
+
             gameObject.SetActive(false);
             _healthBar.gameObject.SetActive(false);
-            interpreterScores.Interpret((long)UnityEngine.Random.Range(_minScoreValue, _maxScoreValue));
-            if (TryGetComponent(out ListenerHitShowDamage hitShowDamageComponent))
-            {
-                hitShowDamageComponent.Remove(hit);
-                // listenerHitShowDamage.Add(hit);
-            }
-            // listenerHitShowDamage.Remove(this);
         }
         public void ActivateHpBar()
         {
@@ -86,9 +97,5 @@ namespace Asteroids
             TakeDamage(DamageValue);
             GetComponent<EnemyAdapter>().UniversalAttack(gameObject.transform.position);
         }
-        //void IHit.Hit(float damage)
-        //{
-        //    OnHitChange.Invoke(damage);
-        //}
     }
 }

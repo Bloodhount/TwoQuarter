@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Observer;
 using TMPro;
@@ -48,13 +47,14 @@ namespace Asteroids
             {
                 GameObject obj = Instantiate(_prefab, _startPosition.position, _startPosition.rotation);
                 obj.SetActive(true);
+                obj.name = obj.name + $"#{i + 1}";
                 _startPosition.position = new Vector3(random, random, -1);
-                _poolObjects.Add(obj);
                 if (obj.TryGetComponent(out ListenerHitShowDamage showDamageComponent))
                 {
                     showDamageComponent._EnemyHealthLabel = GameObject.Find("Text (TMP) total score (test) (1)").GetComponent<TextMeshProUGUI>();
                     showDamageComponent.Add(obj.GetComponent<EnemyHealth>());
                 }
+                _poolObjects.Add(obj);
             }
         }
         private void InitEnemiesPool(int enemyAmount, GameObject prefab, Transform spawnPos)
@@ -82,8 +82,11 @@ namespace Asteroids
                     _poolObjects[i].transform.position = _startVector;
                     _poolObjects[i].gameObject.GetComponent<EnemyHealth>().ActivateHpBar();
                     _poolObjects[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    _poolObjects[i].gameObject.GetComponent<EnemyHealth>().AddListenTo();
-
+                    //   _poolObjects[i].gameObject.GetComponent<EnemyHealth>().AddListenTo();
+                    if (_poolObjects[i].TryGetComponent(out ListenerHitShowDamage showDamageComponent))
+                    {
+                        showDamageComponent.Add(_poolObjects[i].GetComponent<EnemyHealth>().hit);
+                    }
                     return _poolObjects[i];
                 }
             }
@@ -93,8 +96,6 @@ namespace Asteroids
         public void ReturnToPool(GameObject gameObject)
         {
             gameObject.SetActive(false);
-            //_poolObjects.Push(gameObject);
-            //transform.SetParent(Enemy);
         }
         public void Dispose()
         {
