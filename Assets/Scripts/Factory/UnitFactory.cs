@@ -14,7 +14,7 @@ namespace Asteroids.Factories
         }
 
         // public Enemy CreateEnemy(EnemyType enemyType)  create as class
-        public IEnemy CreateEnemy(EnemyType enemyType)  // create as interface with needed methods/contracts
+        public IDirectedAttack CreateEnemy(EnemyType enemyType)  // create as interface with needed methods/contracts
         {
             switch (enemyType)
             {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IEnemy
+public interface IDirectedAttack : IUnit
 {
     public void EnemyAttack(Vector3 pos, Vector3 dir);
 }

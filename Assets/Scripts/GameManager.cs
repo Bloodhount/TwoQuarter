@@ -5,7 +5,7 @@ namespace Asteroids
 {
     public sealed class GameManager : MonoBehaviour
     {
-        [SerializeField] AsteroidFactory<Unit> uGO;
+        [SerializeField] AsteroidFactory<Unit> unitGO;
         [SerializeField] Sprite goSprite;
         private int countCreateAsUn = 0;
         private UnitFactoryFacade unitFactoryFacade;
@@ -15,7 +15,7 @@ namespace Asteroids
 
         private void Start()
         {
-            unitFactoryFacade = new UnitFactoryFacade(uGO, goSprite, countCreateAsUn);
+            unitFactoryFacade = new UnitFactoryFacade(unitGO, goSprite, countCreateAsUn);
 
             enemiesPoolService = EnemiesPool.Instance;
             ServiceLocator.RegisterService<EnemiesPool>(enemiesPoolService);

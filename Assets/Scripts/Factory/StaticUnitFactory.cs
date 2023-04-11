@@ -9,7 +9,7 @@ namespace Asteroids.Factories
         {
             var go = new GameObject();
             go.transform.position = new Vector3(10, 0, -1);
-            go.name = "StaticUnitFactory CreateUnit name \"new Unit\" !";
+            go.name = "StaticUnitFactory CreateUnit name \"new Asteroid\" !";
 
             go.AddComponent<Unit>();
 

@@ -43,5 +43,10 @@ namespace Asteroids
                 acceleration.RemoveAcceleration();
             }
         }
+
+        public void Move()
+        {
+            Debug.Log(" Ship. DoNothing ");
+        }
     }
 }

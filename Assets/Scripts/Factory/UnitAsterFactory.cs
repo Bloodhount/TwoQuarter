@@ -17,13 +17,6 @@ namespace Asteroids
         }
         public void TestUnitAdapter2(Unit unit, Vector3 pos)
         {
-            //var unitComponent = unit.GetComponent<UnitAdapter>();
-            //if (unitComponent != null)
-            //{
-            //    unitComponent.UnitInit(unit, AttackRadius);
-            //    unitComponent.UniversalAttack(pos);
-            //}
-            // or
             if (unit.TryGetComponent(out UnitAdapter unitAdapter))
             {
                 unitAdapter.UnitInit(unit, AttackRadius);
@@ -32,10 +25,6 @@ namespace Asteroids
         }
         public void TestUnitAdapter3(Unit unit)
         {
-            // unit.GetComponent<UnitAdapter>().UnitInit(unit, 1);
-            // var attackPos = new Vector3(1, 1, -1);
-            // unit.GetComponent<UnitAdapter>().UniversalAttack(attackPos);
-            // or
             if (unit.TryGetComponent(out UnitAdapter unitAdapter))
             {
                 var attackPos = new Vector3(1, 1, -1);
