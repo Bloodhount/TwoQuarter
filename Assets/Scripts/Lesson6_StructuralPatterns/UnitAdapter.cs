@@ -18,5 +18,11 @@ namespace Adapter
             Debug.LogWarning($"><color=yellow>{gameObject.name}</color><  UnitAdapter. <color=red>UniversalAttack</color> ");
             _asteroid.DoAttack(position, _radius);
         }
+
+        public void UniversalAttack()
+        {
+            Debug.Log($" UnitAdapter. <color=yellow>UniversalAttack for not args...</color> ");
+
+        }
     }
 }

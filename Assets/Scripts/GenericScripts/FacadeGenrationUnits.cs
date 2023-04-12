@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class FacadeGenrationUnits : MonoBehaviour
 {
-    // ДЗ_5. Урок 6. Структурные шаблоны. Task'a -5. Разделить создания объектов для игры Астероиды и обернуть их ФАСАДОМ
+    //  Урок 6. Структурные шаблоны. Task - 5. Разделить создания объектов для игры Астероиды и обернуть их ФАСАДОМ
 
     #region GenerateMethods
     FactoryMethod factoryMethod = new FactoryMethod(); 
@@ -17,7 +17,6 @@ public class FacadeGenrationUnits : MonoBehaviour
         #endregion
 
         private static readonly Sprite someSprite1;
-        //Unit staticUnit = StaticUnitFactory.CreateUnit(spriteTest: someSprite1);
 
         UnitFactory unitFactory = new UnitFactory();
         UnitAsterFactory unitAsterFactory = new UnitAsterFactory();
@@ -32,19 +31,4 @@ public class FacadeGenrationUnits : MonoBehaviour
         UnitAdapter unitAdapter = new UnitAdapter();
     #endregion
 
-    //public void Initialized()
-    //{
-    //    factoryMethod.ToString();
-    //    clientEnemyFactory.GetEnemy();
-    //    serverEnemyFactory.GetEnemy();
-    //    Unit staticUnit = StaticUnitFactory.CreateUnit(spriteTest: someSprite1);
-    //    unitFactory.CreateEnemy(EnemyType.Enemy);
-    //    unitFactory.CreateEnemy(EnemyType.Enemy1);
-    //    unitFactory.CreateEnemy(EnemyType.Enemy2);
-    //    unitAsterFactory.GetType();
-    //    asteroidFactory.ToString();
-    //    prototype.ToString();
-    //    enemyAdapter.UniversalAttack(transform.position);
-    //    unitAdapter.UniversalAttack(transform.position);
-    //}
 }

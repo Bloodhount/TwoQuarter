@@ -4,6 +4,7 @@ namespace Adapter
 {
     public interface IAttack
     {
-       public void UniversalAttack(Vector3 position);
+        public void UniversalAttack();
+        public void UniversalAttack(Vector3 position);
     }
 }

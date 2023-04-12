@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Observer;
+using Bridge;
 using TMPro;
 using UnityEngine;
 
@@ -45,10 +46,10 @@ namespace Asteroids
             int random = Random.Range(-3, 6);
             for (int i = 0; i < _ObjectsAmount; i++)
             {
+                _startPosition.position = new Vector3(random, random, -1);
                 GameObject obj = Instantiate(_prefab, _startPosition.position, _startPosition.rotation);
                 obj.SetActive(true);
                 obj.name = obj.name + $"#{i + 1}";
-                _startPosition.position = new Vector3(random, random, -1);
                 if (obj.TryGetComponent(out ListenerHitShowDamage showDamageComponent))
                 {
                     showDamageComponent._EnemyHealthLabel = GameObject.Find("Text (TMP) total score (test) (1)").GetComponent<TextMeshProUGUI>();
@@ -86,6 +87,20 @@ namespace Asteroids
                     if (_poolObjects[i].TryGetComponent(out ListenerHitShowDamage showDamageComponent))
                     {
                         showDamageComponent.Add(_poolObjects[i].GetComponent<EnemyHealth>().hit);
+                    }
+                    if (_poolObjects[i].TryGetComponent(out Enemy enemyComponent))
+                    {
+                        /*  enemyComponent.EnemyInit(new AttackA(), new MoveWalk());
+
+                          enemyComponent.Move();
+                          enemyComponent.EnemyAttack(); */
+                        //  /*
+                        // или для теста, выбрать
+                        enemyComponent.EnemyInit(new AttackB(), new MoveRun());
+
+                        enemyComponent.Move();
+                        enemyComponent.EnemyAttack();
+                        //  */
                     }
                     return _poolObjects[i];
                 }
