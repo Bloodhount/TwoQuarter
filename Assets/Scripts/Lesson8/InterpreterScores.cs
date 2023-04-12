@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Interpreter
+namespace Asteroids.Interpreter
 {
     public class InterpreterScores : MonoBehaviour
     {

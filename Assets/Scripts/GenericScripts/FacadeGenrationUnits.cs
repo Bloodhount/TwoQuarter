@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using Asteroids.Factories;
-using Prototype;
-using Adapter;
+using Asteroids.Prototype;
+using Asteroids.Adapter;
 using Asteroids;
 using UnityEngine;
 

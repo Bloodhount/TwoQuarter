@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Observer;
+using Asteroids.Observer;
 using Bridge;
 using TMPro;
 using UnityEngine;

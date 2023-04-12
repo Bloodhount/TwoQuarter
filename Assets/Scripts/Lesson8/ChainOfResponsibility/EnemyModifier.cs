@@ -1,8 +1,8 @@
 using Asteroids;
 
-namespace ChainOfResponsibility
+namespace Asteroids.ChainOfResponsibility
 {
-    public class EnemyModifier //: MonoBehaviour
+    public class EnemyModifier 
     {
         protected Enemy _enemy;
         protected EnemyModifier Next;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Data
+namespace Asteroids.Data
 {
     [CreateAssetMenu(fileName = "LevelConfig", menuName = "Configs/LevelConfig")]
     public class LevelConfig : ScriptableObject

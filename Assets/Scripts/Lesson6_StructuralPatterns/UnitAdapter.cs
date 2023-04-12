@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Adapter
+namespace Asteroids.Adapter
 {
     public class UnitAdapter : MonoBehaviour, IAttack
     {

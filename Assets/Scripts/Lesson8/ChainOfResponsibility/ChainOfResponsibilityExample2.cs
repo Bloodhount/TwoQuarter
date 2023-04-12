@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Asteroids;
 
-namespace ChainOfResponsibility
+namespace Asteroids.ChainOfResponsibility
 {
     public class ChainOfResponsibilityExample2 : MonoBehaviour
     {

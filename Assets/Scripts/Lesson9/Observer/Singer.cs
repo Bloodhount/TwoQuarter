@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Observer
+namespace Asteroids.Observer
 {
     public class Singer
     {

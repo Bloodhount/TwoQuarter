@@ -1,4 +1,4 @@
-namespace Command
+namespace Asteroids.Command
 {
     public interface ICommand
     {

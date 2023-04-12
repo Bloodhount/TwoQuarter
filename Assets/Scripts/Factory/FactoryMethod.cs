@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Adapter;
 using UnityEngine;
 
 namespace Asteroids.Factories

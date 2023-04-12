@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace State
+namespace Asteroids.State
 {
     public class ContextShip
     {

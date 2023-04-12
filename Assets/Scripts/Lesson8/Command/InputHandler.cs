@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Debug;
 
-namespace Command
+namespace Asteroids.Command
 {
     public class InputHandler : MonoBehaviour
     {
@@ -67,8 +67,8 @@ namespace Command
                     AddToList(_buttonB);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Z)) 
-                {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
                 _buttonZ.TryExecute();
                 if (_stringCommandsView.Count > 0)
                 {

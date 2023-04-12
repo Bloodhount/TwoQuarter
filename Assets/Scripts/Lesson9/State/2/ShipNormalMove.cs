@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipNormalMove : IShipState
+namespace Asteroids.State
 {
-    public void StateOff()
+    public class ShipNormalMove : IShipState
     {
-        Debug.LogWarning("<color=red>ShipNormalMove.StateOff</color>");
-    }
+        public void StateOff()
+        {
+            Debug.LogWarning("<color=red>ShipNormalMove.StateOff</color>");
+        }
 
-    public void StateOn()
-    {
-        Debug.LogWarning("<color=green>ShipNormalMove.StateOn</color>");
+        public void StateOn()
+        {
+            Debug.LogWarning("<color=green>ShipNormalMove.StateOn</color>");
+        }
     }
 }
