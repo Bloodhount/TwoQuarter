@@ -1,7 +1,6 @@
-using Asteroids;
 using UnityEngine;
 
-namespace Adapter
+namespace Asteroids.Adapter
 {
     public class EnemyAdapter : MonoBehaviour, IAttack
     {

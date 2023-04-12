@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Asteroids;
 using UnityEngine;
 
 
-namespace Prototype
+namespace Asteroids.Prototype
 {
-    public class MyClonableObject : MonoBehaviour //,imy
-    { // филды копируемого оригинала
+    public class MyClonableObject : MonoBehaviour 
+    { 
         [SerializeField] private int _health;
         private static int _cloneCount = 0;
         public MyClonableObject Clone()

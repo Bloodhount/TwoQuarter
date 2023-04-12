@@ -1,4 +1,4 @@
-using Adapter;
+using Asteroids.Adapter;
 using UnityEngine;
 
 namespace Asteroids

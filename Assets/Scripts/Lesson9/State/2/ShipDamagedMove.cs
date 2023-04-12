@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using Asteroids;
 using UnityEngine;
 
-public class ShipDamagedMove : IShipState
+namespace Asteroids.State
 {
-    private Player _player;
-    public void StateOff()
+    public class ShipDamagedMove : IShipState
     {
-        _player = GameObject.FindObjectOfType<Player>();
-        Debug.LogWarning("<color=red>ShipDamagedMove.StateOff</color>");
-        if (_player.gameObject.TryGetComponent(out Rigidbody rigidbody))
+        private Player _player;
+        public void StateOff()
         {
-            rigidbody.drag = 1;
+            _player = GameObject.FindObjectOfType<Player>();
+            Debug.LogWarning("<color=red>ShipDamagedMove.StateOff</color>");
+            if (_player.gameObject.TryGetComponent(out Rigidbody rigidbody))
+            {
+                rigidbody.drag = 1;
+            }
         }
-    }
-    public void StateOn()
-    {
-        _player = GameObject.FindObjectOfType<Player>();
-        Debug.LogWarning("<color=green>ShipDamagedMove.StateOn</color>");
-        if (_player.gameObject.TryGetComponent(out Rigidbody rigidbody))
+        public void StateOn()
         {
-            rigidbody.drag = 8;
+            _player = GameObject.FindObjectOfType<Player>();
+            Debug.LogWarning("<color=green>ShipDamagedMove.StateOn</color>");
+            if (_player.gameObject.TryGetComponent(out Rigidbody rigidbody))
+            {
+                rigidbody.drag = 8;
+            }
         }
     }
 }

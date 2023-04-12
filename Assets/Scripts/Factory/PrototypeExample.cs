@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Prototype
+namespace Asteroids.Prototype
 {
     public class PrototypeExample : MonoBehaviour
     {

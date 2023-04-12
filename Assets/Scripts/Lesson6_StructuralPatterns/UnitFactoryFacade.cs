@@ -1,4 +1,4 @@
-using Adapter;
+using Asteroids.Adapter;
 using Asteroids;
 using Asteroids.Factories;
 using UnityEngine;

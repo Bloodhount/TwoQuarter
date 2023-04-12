@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEngine.Debug;
 
-namespace Data
+namespace Asteroids.Data
 {
     public class ScriptableObjectTestExample : MonoBehaviour
     {

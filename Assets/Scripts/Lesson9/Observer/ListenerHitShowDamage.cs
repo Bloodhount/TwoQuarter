@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using static UnityEngine.Debug;
 
-namespace Observer
+namespace Asteroids.Observer
 {
     public sealed class ListenerHitShowDamage : MonoBehaviour
     {

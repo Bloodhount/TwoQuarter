@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Observer
+namespace Asteroids.Observer
 {
     public class ObserverExample : MonoBehaviour
     {

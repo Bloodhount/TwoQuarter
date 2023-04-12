@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MementoExample : MonoBehaviour
+namespace Asteroids.Memento
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MementoExample : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

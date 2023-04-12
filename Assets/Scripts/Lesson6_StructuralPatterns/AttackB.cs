@@ -1,5 +1,4 @@
 using UnityEngine;
-using Adapter;
 
 namespace Bridge
 {

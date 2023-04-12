@@ -1,7 +1,7 @@
 using System;
-using Adapter;
-using Interpreter;
-using Observer;
+using Asteroids.Adapter;
+using Asteroids.Interpreter;
+using Asteroids.Observer;
 using UnityEngine;
 using static UnityEngine.Debug;
 

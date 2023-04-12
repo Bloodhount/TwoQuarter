@@ -38,7 +38,10 @@ namespace Asteroids
         public void EnemyAttack(Vector3 position, Vector3 direction)
         {
             Log($" _attack = {Attack}");
-            _attack.UniversalAttack(gameObject.transform.position);
+            if (gameObject.transform.position != null)
+            {
+                _attack.UniversalAttack(gameObject.transform.position);
+            }
         }
         public void EnemyAttack(Vector3 position, Vector3 direction, int attack)
         {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Observer
+namespace Asteroids.Observer
 {
     public class Radio : IRadio
     {

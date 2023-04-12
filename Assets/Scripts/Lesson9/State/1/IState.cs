@@ -1,4 +1,4 @@
-namespace State
+namespace Asteroids.State
 {
     public interface IState
     {

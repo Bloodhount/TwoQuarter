@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace State
+namespace Asteroids.State
 {
     public class StateExample : MonoBehaviour
     {

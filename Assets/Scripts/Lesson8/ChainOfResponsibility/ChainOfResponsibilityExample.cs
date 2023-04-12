@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ChainOfResponsibility
+namespace Asteroids.ChainOfResponsibility
 {
     public class ChainOfResponsibilityExample : MonoBehaviour
     {
@@ -13,8 +13,6 @@ namespace ChainOfResponsibility
             _gameHandlers[0].Handle();
             for (int i = 0; i < _gameHandlers.Count; i++)
             {
-                // _gameHandlers[i].SetNext(_gameHandlers[i - 1]);
-                // _gameHandlers[i - 1].SetNext(_gameHandlers[i]);
                 _gameHandlers[i].SetNext(_gameHandlers[i + 1]);
             }
         }

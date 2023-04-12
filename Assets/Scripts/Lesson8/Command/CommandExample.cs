@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Command
+namespace Asteroids.Command
 {
     public class CommandExample : MonoBehaviour
     {
