@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +43,6 @@ namespace Asteroids
         private void Start()
         {
             _startShotPosition = GameObject.Find("StartShotPosition").transform;
-            // _startShotPosition = FindObjectOfType<Player>().GetComponentInChildren<Transform>();
 
             InstantiateBullet();
             TestBulletBuilder();
@@ -116,7 +114,6 @@ namespace Asteroids
 
         public void ReturnToPool(GameObject gameObject)
         {
-
             gameObject.SetActive(false);
             //_poolObjects.Push(gameObject);
         }

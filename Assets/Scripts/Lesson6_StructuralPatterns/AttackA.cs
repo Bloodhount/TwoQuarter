@@ -13,7 +13,5 @@ namespace Bridge
         {
             Debug.Log("namespace Bridge. class <color=green>Attack >A<</color>. UniversalAttack(Vector3 position)");
         }
-
-
     }
 }

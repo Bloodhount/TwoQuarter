@@ -1,5 +1,3 @@
-using Adapter;
-using Bridge;
 using UnityEngine;
 using static UnityEngine.Debug;
 

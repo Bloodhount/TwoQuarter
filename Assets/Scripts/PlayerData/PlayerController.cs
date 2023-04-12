@@ -1,26 +1,37 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using static UnityEngine.Debug;
 
 namespace Asteroids
 {
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float _shootForce = 100f;
+        [SerializeField] private TextMeshProUGUI _shipMoveStateTextUI;
+        [SerializeField] private TextMeshProUGUI _weaponStateText;
         private Dictionary<Type, IShipState> _behaviourStates;
         private IShipState _currentShipState;
+        UnlockWeapon unlockWeapon;
         private void Start()
         {
             this.InitBehaviourStates();
             this.SetDefaultState();
+
+            unlockWeapon = new UnlockWeapon(false); WeaponStateTextUpdate("Lock");
         }
         void Update()
         {
             StateInput();
-            Shoot();
+            PlayerShoot();
             AlternativeShoot();
+            WeaponSafety();
         }
+
+
+        #region StatePatternRegion
         private void StateInput()
         {
             if (Input.GetKeyDown(KeyCode.O))
@@ -63,21 +74,59 @@ namespace Asteroids
         {
             var state = this.GetState<ShipNormalMove>();
             this.SetState(state);
-        }   // TODO ShipNormalMove & ShipDamagedMove переделать и исп.вместо класса Ship в классе Player
+            ShipMoveStateTextUpdate("Normal");
+        }
         public void SetDamagedState()
         {
             var state = this.GetState<ShipDamagedMove>();
             this.SetState(state);
-        }   // TODO ShipNormalMove & ShipDamagedMove переделать и исп.вместо класса Ship в классе Player
+            ShipMoveStateTextUpdate("Damaged");
+        }
 
-        private void Shoot()
+        private void ShipMoveStateTextUpdate(string text)
+        {
+            _shipMoveStateTextUI.text = $"MoveState: {text} ";
+        }
+        #endregion
+
+        #region ProxyPatternRegion
+        private void WeaponSafety()
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                unlockWeapon.IsUnlock = true;
+                Log("<color=green> Weapon is Unlock</color> ");
+                WeaponStateTextUpdate("Unlock");
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                unlockWeapon.IsUnlock = false; Log("<color=red> Weapon is lock</color> ");
+                WeaponStateTextUpdate("Lock");
+            }
+        }
+
+        private void WeaponStateTextUpdate(string text)
+        {
+            _weaponStateText.text = $"Weapon: {text} ";
+        }
+
+        // temp place for HW
+        private void PlayerShoot()
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                var bullet = ServiceLocator.GetService<BulletsPool>();
-                bullet.GetBaseObjPool<Bullet>(_shootForce);
+                // var unlockWeapon = new UnlockWeapon(false);
+                var weapon = new PlayerWeapon();
+                var weaponProxy = new WeaponProxy(weapon, unlockWeapon);
+                weaponProxy.Shoot(_shootForce);
+                //unlockWeapon.IsUnlock = true;
+
+                //        var bullet = ServiceLocator.GetService<BulletsPool>();
+                //        bullet.GetBaseObjPool<Bullet>(_shootForce);
             }
         }
+        #endregion
+
         private void AlternativeShoot()
         {
             if (Input.GetMouseButton(1))

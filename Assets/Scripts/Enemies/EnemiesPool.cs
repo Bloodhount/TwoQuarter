@@ -83,24 +83,26 @@ namespace Asteroids
                     _poolObjects[i].transform.position = _startVector;
                     _poolObjects[i].gameObject.GetComponent<EnemyHealth>().ActivateHpBar();
                     _poolObjects[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    //   _poolObjects[i].gameObject.GetComponent<EnemyHealth>().AddListenTo();
                     if (_poolObjects[i].TryGetComponent(out ListenerHitShowDamage showDamageComponent))
                     {
                         showDamageComponent.Add(_poolObjects[i].GetComponent<EnemyHealth>().hit);
                     }
                     if (_poolObjects[i].TryGetComponent(out Enemy enemyComponent))
                     {
-                        /*  enemyComponent.EnemyInit(new AttackA(), new MoveWalk());
-
-                          enemyComponent.Move();
-                          enemyComponent.EnemyAttack(); */
-                        //  /*
-                        // или для теста, выбрать
-                        enemyComponent.EnemyInit(new AttackB(), new MoveRun());
+                        ///* 
+                        enemyComponent.EnemyInit(new AttackA(), new MoveWalk());
 
                         enemyComponent.Move();
                         enemyComponent.EnemyAttack();
-                        //  */
+                        //*/
+
+                        /*
+                      // или для теста, выбрать
+                      enemyComponent.EnemyInit(new AttackB(), new MoveRun());
+
+                      enemyComponent.Move();
+                      enemyComponent.EnemyAttack();
+                      */
                     }
                     return _poolObjects[i];
                 }

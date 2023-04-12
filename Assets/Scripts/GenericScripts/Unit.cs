@@ -22,14 +22,13 @@ namespace Asteroids
 
         public override void DoAttack(Vector3 position, float radius)
         {
-            // _unit.
             Debug.Log($" class Unit, <color=yellow> GO:  {name} ,</color>" +
                 $" UnitAttack {position} , <color=green>{radius}</color>  ");
         }
 
         public override void AttackReload()
         {
-            throw new System.NotImplementedException();
+            Debug.Log($" class Unit, <color=yellow> {name} AttackReload  </color>");
         }
     }
 }
