@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Adapter;
+using Asteroids.Adapter;
 using UnityEngine;
 using static UnityEngine.Debug;
 
@@ -19,17 +17,20 @@ namespace Asteroids
         }
         public void TestUnitAdapter2(Unit unit, Vector3 pos)
         {
-            unit.GetComponent<UnitAdapter>().UnitInit(unit, AttackRadius);
-            unit.GetComponent<UnitAdapter>().UniversalAttack(pos);
-            Log($">{name}< . <color=red> TestUnitAdapter 2 </color> . UniversalAttack({pos})");
+            if (unit.TryGetComponent(out UnitAdapter unitAdapter))
+            {
+                unitAdapter.UnitInit(unit, AttackRadius);
+                unitAdapter.UniversalAttack(pos);
+            }
         }
         public void TestUnitAdapter3(Unit unit)
         {
-            Log($">{name}< . <color=red> TestUnitAdapter 3 </color> . UniversalAttack() <color=green>START</color>");
-            unit.GetComponent<UnitAdapter>().UnitInit(unit, 1);
-            var attackPos = new Vector3(1, 1, -1);
-            unit.GetComponent<UnitAdapter>().UniversalAttack(attackPos);
-            Log($">{name}< . <color=red> TestUnitAdapter 3 </color> . UniversalAttack() <color=green>STOP</color>");
+            if (unit.TryGetComponent(out UnitAdapter unitAdapter))
+            {
+                var attackPos = new Vector3(1, 1, -1);
+                unitAdapter.UnitInit(unit, AttackRadius);
+                unitAdapter.UniversalAttack(attackPos);
+            }
         }
     }
 }

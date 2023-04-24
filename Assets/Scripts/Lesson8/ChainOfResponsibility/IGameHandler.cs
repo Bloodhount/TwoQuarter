@@ -1,4 +1,4 @@
-﻿namespace ChainOfResponsibility
+﻿namespace Asteroids.ChainOfResponsibility
 {
     public interface IGameHandler
     {

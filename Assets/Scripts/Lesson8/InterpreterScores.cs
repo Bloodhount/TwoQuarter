@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-namespace Interpreter
+namespace Asteroids.Interpreter
 {
     public class InterpreterScores : MonoBehaviour
     {
@@ -24,20 +20,24 @@ namespace Interpreter
         }
         public void Interpret(long value)
         {
-            _textAddScore.GetComponent<TextMeshProUGUI>().alpha = 255;
-            _textAddScore.text = " + " + value;
+            const int _maxAlphaValue = 255;
+            _textAddScore.GetComponent<TextMeshProUGUI>().alpha = _maxAlphaValue;  // TODO сделать плавную смену прозрачности
+            _textAddScore.text = "<color=yellow> + </color>" + $"<color=green> {value}</color>";                     // Пример таймера https://www.youtube.com/watch?v=XnHpJAb7yh0&list=PLKWKqJ1bWRh72mlJX-V_mt1bItUy2aSBu&index=15
 
             scores += value;
             string tmp = StringConverter(scores);
-            //String.Format(tmp);  Console.WriteLine("{0:D7}",12345);
-            _textTotalScoreTest.text = $"  {scores} ";
+            _textTotalScoreTest.text = $"TEST: {scores} ";
             _textTotalScore.text = "  " + StringConverter(scores);
 
             Invoke(nameof(SetAlpha), 1.5f);
         }
         void SetAlpha()
         {
-            _textAddScore.GetComponent<TextMeshProUGUI>().alpha = 0;
+            const int _minAlphaValue = 0;
+            if (_textAddScore.TryGetComponent(out TextMeshProUGUI text))  // TODO сделать плавную смену прозрачности
+            {
+                text.alpha = _minAlphaValue;
+            }
         }
 
         private static string StringConverter(long number)
@@ -51,46 +51,44 @@ namespace Interpreter
         }
         static string ValidateArgument(long number)
         {
-           // float curr = number / 1000;
-            //float min = curr * 0.5f;
-            //float max = curr * 2.2f;
+            switch (number)
+            {
+                case >= 1000000000000:
+                    {
+                        float curr = number;
+                        var tmp = curr / 1000000000000;
+                        return $" {tmp.ToString("0.0")} T";
+                    }
 
-            if (number >= 1000000000000)
-            {
-                float curr = number;
-                var tmp = curr / 1000000000000;
-                return $" {tmp.ToString("0.0")} T";
-            }
-            else if (number >= 1000000000)
-            {
-                float curr = number ;
-                var tmp = curr / 1000000000;
-                return $" {tmp.ToString("0.00")} B";
-            }
-            else if (number >= 1000000) // (curr > min || curr < max)
-            {
-                float curr = number ;
-                var tmp = curr / 1000000;
-                return $" {tmp.ToString("0.00")} M";
-                // return $" {tmp.ToString("0.0")} K ";
-                // _textTotalScoreTest.text = $"  {scores} ";
-                // return $" {number.ToString("0.0")} K ";
-                //return $" {curr.ToString("0.0")} K ";
-                //return $" {curr.ToString("0.0")} K ";
-            }
-            else if(number >= 1000)
-            {
-                float curr = number;
-                var tmp = curr / 1000;
-                return $" {tmp.ToString("0.00")} K";
-            }
-            else if (number >= 1)
-            {
-                return $" {number}  ";
+                case >= 1000000000:
+                    {
+                        float curr = number;
+                        var tmp = curr / 1000000000;
+                        return $" {tmp.ToString("0.00")} B";
+                    }
+
+                case >= 1000000:
+                    {
+                        float curr = number;
+                        var tmp = curr / 1000000;
+                        return $" {tmp.ToString("0.00")} M";
+                    }
+
+                case >= 1000:
+                    {
+                        float curr = number;
+                        var tmp = curr / 1000;
+                        return $" {tmp.ToString("0.00")} K";
+                    }
+
+                case >= 1:
+                    return $" {number}  ";
             }
 
             return string.Empty + "string.Empty";
         }
+
+        //String.Format(tmp);  Console.WriteLine("{0:D7}",12345);
         /*
             тысяча      (тыс.) 	            	10^3 	10^3
             миллион     (млн) 	million     	10^6 	10^6

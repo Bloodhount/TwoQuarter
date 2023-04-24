@@ -34,5 +34,10 @@ namespace Asteroids
             _move.Set(horizontal * moveSpeed, vertical * moveSpeed,0);
             _playerRigidbody.AddForce(_move ); 
         }
+
+        public void Move()
+        {
+            Debug.Log(" MoveTransform. DoNothing ");
+        }
     }
 }

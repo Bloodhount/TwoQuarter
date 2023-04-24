@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Asteroids;
 
-namespace Asteroids
+public interface IEnemyFactory
 {
-    public interface IEnemyFactory
-    {
-        Enemy Create(EnemyHealth health);
-    }
+    Enemy Create(EnemyHealth health);
 }
+

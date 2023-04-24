@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public class BaseHealth : MonoBehaviour
+    public abstract class BaseHealth : MonoBehaviour
     {
         [SerializeField] public int CurrentHealth { get; protected set; } = 2;
         [SerializeField] public int MaxHealth { get; protected set; } = 5;

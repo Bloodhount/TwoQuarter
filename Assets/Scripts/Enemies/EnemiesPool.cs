@@ -1,10 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
+using Asteroids.Observer;
+using Bridge;
+using TMPro;
 using UnityEngine;
 
 namespace Asteroids
 {
-    public class EnemiesPool : MonoBehaviour
+    //  public class EnemiesPool<T> : MonoBehaviour // TODO сделать ограничение по типу с пом. дженериков
+    public class EnemiesPool : MonoBehaviour // TODO сделать ограничение по типу с пом. дженериков
     {
         [SerializeField] private List<GameObject> _poolObjects = new List<GameObject>();
         [SerializeField] private GameObject _prefab;
@@ -12,7 +15,7 @@ namespace Asteroids
 
         [SerializeField] private int _ObjectsAmount = 10;
 
-        private static EnemiesPool _instance;
+        private static EnemiesPool _instance; //     private static T _instance; и.т.д...
         public static EnemiesPool Instance
         {
             get
@@ -44,9 +47,15 @@ namespace Asteroids
             int random = Random.Range(-3, 6);
             for (int i = 0; i < _ObjectsAmount; i++)
             {
+                _startPosition.position = new Vector3(random, 5, -1);
                 GameObject obj = Instantiate(_prefab, _startPosition.position, _startPosition.rotation);
                 obj.SetActive(true);
-                _startPosition.position = new Vector3(random, random, -1);
+                obj.name = obj.name + $"#{i + 1}";
+                if (obj.TryGetComponent(out ListenerHitShowDamage showDamageComponent))
+                {
+                    showDamageComponent._EnemyHealthLabel = GameObject.Find("Text (TMP) total score (test) (1)").GetComponent<TextMeshProUGUI>();
+                    showDamageComponent.Add(obj.GetComponent<EnemyHealth>());
+                }
                 _poolObjects.Add(obj);
             }
         }
@@ -69,13 +78,33 @@ namespace Asteroids
                 if (!_poolObjects[i].activeInHierarchy)
                 {
                     int random = Random.Range(-6, 6);
-                    Vector3 _startVector = new Vector3(random, random, -1);
+                    Vector3 _startVector = new Vector3(random, 5, -1);
 
                     _poolObjects[i].SetActive(true);
                     _poolObjects[i].transform.position = _startVector;
                     _poolObjects[i].gameObject.GetComponent<EnemyHealth>().ActivateHpBar();
                     _poolObjects[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    if (_poolObjects[i].TryGetComponent(out ListenerHitShowDamage showDamageComponent))
+                    {
+                        showDamageComponent.Add(_poolObjects[i].GetComponent<EnemyHealth>().hit);
+                    }
+                    if (_poolObjects[i].TryGetComponent(out Enemy enemyComponent))
+                    {
+                        ///* 
+                        enemyComponent.EnemyInit(new AttackA(), new MoveWalk());
 
+                        enemyComponent.Move();
+                        enemyComponent.EnemyAttack();
+                        //*/
+
+                        /*
+                      // или для теста, выбрать
+                      enemyComponent.EnemyInit(new AttackB(), new MoveRun());
+
+                      enemyComponent.Move();
+                      enemyComponent.EnemyAttack();
+                      */
+                    }
                     return _poolObjects[i];
                 }
             }
@@ -85,8 +114,6 @@ namespace Asteroids
         public void ReturnToPool(GameObject gameObject)
         {
             gameObject.SetActive(false);
-            //_poolObjects.Push(gameObject);
-            //transform.SetParent(Enemy);
         }
         public void Dispose()
         {

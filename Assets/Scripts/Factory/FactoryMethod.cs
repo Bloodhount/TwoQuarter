@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Adapter;
 using UnityEngine;
 
 namespace Asteroids.Factories
@@ -29,27 +26,27 @@ namespace Asteroids.Factories
     public class ClientEnemyFactory : EnemyBaseFactory
     {
         private Transform _playerTransform;
-        protected override IEnemy CreateEnemy()
+        protected override IDirectedAttack CreateEnemy()
         {
             // TODO
-            IEnemy enemy = new Enemy();
+            IDirectedAttack enemy = new Enemy();
             // use  some mandatory for interface IEnemy methods
             return enemy;
         }
     }
     public class ServerEnemyFactory : EnemyBaseFactory
     {
-        protected override IEnemy CreateEnemy()
+        protected override IDirectedAttack CreateEnemy()
         {
             // TODO
-            IEnemy enemy = new Enemy(); // not using view
+            IDirectedAttack enemy = new Enemy(); // not using view
             //  enemy.EnemyAttack();
             return enemy;
         }
     }
     public abstract class EnemyBaseFactory
     { // FactoryMethod
-        public IEnemy GetEnemy()
+        public IDirectedAttack GetEnemy()
         {
             return CreateEnemy();
         }
@@ -58,14 +55,14 @@ namespace Asteroids.Factories
         //    IAttack enemy = new Enemy();
         //    return enemy;
         //}
-        protected abstract IEnemy CreateEnemy();
+        protected abstract IDirectedAttack CreateEnemy();
 
         #region other methods to do stuff with created enemies
-        private void DoPrivateThingsWithEnemy(IEnemy enemy)
+        private void DoPrivateThingsWithEnemy(IDirectedAttack enemy)
         {
 
         }
-        private void DoProtectedThingsWithEnemy(IEnemy enemy)
+        private void DoProtectedThingsWithEnemy(IDirectedAttack enemy)
         {
 
         }

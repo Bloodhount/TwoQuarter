@@ -8,17 +8,7 @@ namespace Asteroids
     {
         private readonly IMove _moveImplementation;
         private readonly IRotation _rotationImplementation;
-        //public float Speed
-        //{
-        //    get => _moveImplementation.Speed;
-        //    //set
-        //    //{
-        //    //    if ((value > 0) && (value < 13))
-        //    //    {
-        //    //        _month = value;
-        //    //    }
-        //    //}
-        //}
+
         public float Speed => _moveImplementation.Speed;
         public Ship(IMove move, IRotation rotation)
         {
@@ -52,6 +42,11 @@ namespace Asteroids
             {
                 acceleration.RemoveAcceleration();
             }
+        }
+
+        public void Move()
+        {
+            Debug.Log(" Ship. DoNothing ");
         }
     }
 }

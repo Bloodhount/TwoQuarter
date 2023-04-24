@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1318425729131330383}
   - component: {fileID: 1691396136}
   - component: {fileID: 2739845639917616565}
+  - component: {fileID: 5363827920262418216}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -128,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Attack: 0
-  Defence: 0
+  Attack: 1
+  Defence: 1
   _asteroidPrefab: {fileID: 3692776855680869083, guid: 9b742a08ce45b324391d6ec669858112, type: 3}
 --- !u!114 &1691396136
 MonoBehaviour:
@@ -143,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10a832bf39d5e041b5b7caefbb511f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minScoreValue: 21474836470
-  _maxScoreValue: 214820810300
+  _minScoreValue: 214
+  _maxScoreValue: 548
   _health: 2
   _maxHealth: 3
   HealthBarPrefab: {fileID: 3397840154012935470, guid: f6b52a40e65cce84c934aa447b12bd7e, type: 3}
@@ -161,6 +162,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5733a917821d76849955006b14713ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5363827920262418216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318425729131330378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a142ffb466f9fa244ac4d54c5dddd14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _EnemyHp: {fileID: 1691396136}
+  _EnemyHealthLabel: {fileID: 0}
 --- !u!1 &1318425729468199685
 GameObject:
   m_ObjectHideFlags: 0

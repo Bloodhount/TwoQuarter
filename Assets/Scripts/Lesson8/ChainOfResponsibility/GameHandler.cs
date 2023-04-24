@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ChainOfResponsibility
+namespace Asteroids.ChainOfResponsibility
 {
     public  class GameHandler : MonoBehaviour, IGameHandler
 

@@ -1,6 +1,4 @@
-﻿using Asteroids;
-
-namespace ChainOfResponsibility
+﻿namespace Asteroids.ChainOfResponsibility
 {
     internal class AddAttackModifier : EnemyModifier
     {

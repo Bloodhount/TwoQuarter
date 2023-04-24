@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Command
+namespace Asteroids.Command
 {
     public class MoveDown : ICommand
     {

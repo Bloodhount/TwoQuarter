@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-// using System.Linq;//using MoreLinq;
 
 namespace Asteroids
 {
@@ -10,14 +7,11 @@ namespace Asteroids
         #region FieldsRegion
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
-        [SerializeField] private float _shootForce = 100f;
 
         private float _inputDirVertical, _inputDirHorizontal;
 
-        // [SerializeField] private Transform _startShotPosition;
-
+        public Ship _ship;
         private Camera _camera;
-        private Ship _ship;
         private Rigidbody _playerRigidbody;
         private AccelerationMove _moveTransform;
         #endregion 
@@ -29,40 +23,28 @@ namespace Asteroids
             var _rotation = new RotationShip(transform);
             _ship = new Ship(_moveTransform, _rotation); // теперь можно поменять _ship на любой класс поддержывающий методы Move и Rotation(интерфейсы IMove, IRotation)
         }
+
         void Update()
         {
             PlayerInput();
         }
 
+        #region InputMethodsRegion
         private void PlayerInput()
         {
             Aiming();
             HorizontalInput();
             VerticalInput();
             Boost();
-            Shoot();
-            AlternativeShoot();
+            //Shoot();
+            //AlternativeShoot();
+           // StateInput();
         }
+
         private void Aiming()
         {
             var direction = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
             _ship.Rotation(direction);
-        }
-        private void Shoot()
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                var bullet = ServiceLocator.GetService<BulletsPool>();
-                bullet.GetBaseObjPool<Bullet>(_shootForce);
-            }
-        }
-        private void AlternativeShoot()
-        {
-            if (Input.GetMouseButton(1))
-            {
-                var bullet = ServiceLocator.GetService<BulletsPool>();
-                bullet.GetAlternativeObjPool<Bullet>(_shootForce);
-            }
         }
         private void Boost()
         {
@@ -83,7 +65,7 @@ namespace Asteroids
         {
             _inputDirHorizontal = Input.GetAxis("Horizontal");
         }
-
+        #endregion
         private void FixedUpdate()
         {
             RbMove();
