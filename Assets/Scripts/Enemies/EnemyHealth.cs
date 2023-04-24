@@ -59,7 +59,16 @@ namespace Asteroids
                 }
             }
             _healthBar.SetHealth(_health, _maxHealth);
-            OnHitChange.Invoke(damageValue, " Take Damage");
+
+            if (OnHitChange != null)
+            {
+                OnHitChange.Invoke(damageValue, " Take Damage");
+            }
+            else
+            {
+                Log("TakeDamage. OnHitChange is empty ! ");
+
+            }
         }
         public override void Die()
         {
@@ -69,17 +78,18 @@ namespace Asteroids
             if (getID != null)
             {
                 Log(getID + " Die");
-                // OnHitChange.Invoke(getID, " Die");
-                OnHitChange.Invoke(arg1: getID, arg2: " Die");
-                //void NewMethod()
-                //{
-                //    OnHitChange.Invoke(getID, " Die");
-                //}
-                //Invoke(nameof(NewMethod), 0.8f);
+                if (OnHitChange != null)
+                {
+                    OnHitChange.Invoke(arg1: getID, arg2: " Die");
+                }
+                else
+                {
+                    Log("Die. OnHitChange is empty ! ");
+                }
             }
             else
             {
-                Log("else Die");
+                Log("Die.getID is empty ! ");
             }
 
             gameObject.SetActive(false);
@@ -90,12 +100,16 @@ namespace Asteroids
             _healthBar.gameObject.SetActive(true);
             _health = _maxHealth;
             _healthBar.SetHealth(_health, _maxHealth);
-            Log("ActivateHpBar");
+            // Log("ActivateHpBar");
         }
         private void OnCollisionEnter(Collision collision)
         {
-            TakeDamage(DamageValue);
-            GetComponent<EnemyAdapter>().UniversalAttack(gameObject.transform.position);
+            Log(collision.gameObject.name);
+            if (TryGetComponent(out EnemyHealth enemyHealthComponent))
+            {
+                enemyHealthComponent.TakeDamage(DamageValue);
+            }
+            // GetComponent<EnemyAdapter>().UniversalAttack(gameObject.transform.position);
         }
     }
 }

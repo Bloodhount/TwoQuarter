@@ -7,7 +7,9 @@ namespace Asteroids
     {
         [SerializeField] AsteroidFactory<Unit> unitGO;
         [SerializeField] Sprite goSprite;
-        private int countCreateAsUn = 0;
+        private int _countCreateAsUn = 0;
+        // private  // TODO
+        public int _timer = 2;
         private UnitFactoryFacade unitFactoryFacade;
 
         BulletsPool bulletsPoolService;
@@ -15,7 +17,7 @@ namespace Asteroids
 
         private void Start()
         {
-            unitFactoryFacade = new UnitFactoryFacade(unitGO, goSprite, countCreateAsUn);
+            unitFactoryFacade = new UnitFactoryFacade(unitGO, goSprite, _countCreateAsUn);
 
             enemiesPoolService = EnemiesPool.Instance;
             ServiceLocator.RegisterService<EnemiesPool>(enemiesPoolService);
@@ -26,6 +28,15 @@ namespace Asteroids
         }
         private void Update()
         {
+            for (float t = _timer; t > 0; t -= Time.deltaTime)
+            {
+                //Debug.LogError(t);
+                //Debug.LogWarning(_timer);
+                if (t <= 0)
+                {
+                    t = _timer;
+                }
+            }
             if (Input.GetKeyUp(KeyCode.E))
             {
                 // EnemiesPool.instance.GetEnemy_1<Enemy>(); // типа синглтон...
@@ -38,6 +49,7 @@ namespace Asteroids
             unitFactoryFacade.NumButton2();
             unitFactoryFacade.NumButton3(gameObject);
             unitFactoryFacade.NumButton4(gameObject);
+            // unitFactoryFacade.CreateAsteroidUnit(gameObject);
             //_______________________________________________
             if (Input.GetKeyDown(KeyCode.Alpha9))
             {

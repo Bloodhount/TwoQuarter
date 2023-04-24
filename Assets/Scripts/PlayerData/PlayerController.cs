@@ -75,13 +75,13 @@ namespace Asteroids
         {
             var state = this.GetState<ShipNormalMove>();
             this.SetState(state);
-            ShipMoveStateTextUpdate("Normal");
+            ShipMoveStateTextUpdate("<color=green>Normal</color>");
         }
         public void SetDamagedState()
         {
             var state = this.GetState<ShipDamagedMove>();
             this.SetState(state);
-            ShipMoveStateTextUpdate("Damaged");
+            ShipMoveStateTextUpdate("<color=red>Damaged</color>");
         }
 
         private void ShipMoveStateTextUpdate(string text)
@@ -97,12 +97,12 @@ namespace Asteroids
             {
                 unlockWeapon.IsUnlock = true;
                 Log("<color=green> Weapon is Unlock</color> ");
-                WeaponStateTextUpdate("Unlock");
+                WeaponStateTextUpdate("<color=yellow>Unlock</color>");
             }
             if (Input.GetKeyDown(KeyCode.L))
             {
                 unlockWeapon.IsUnlock = false; Log("<color=red> Weapon is lock</color> ");
-                WeaponStateTextUpdate("Lock");
+                WeaponStateTextUpdate("<color=red>Lock</color>");
             }
         }
 

@@ -80,13 +80,27 @@ namespace Facade
         {
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                countCreateAsUn++;
-                var un = unitGO.CreateAsUn();
-                un.name = un.gameObject.name + $" {countCreateAsUn}";
-                if (enterGo.TryGetComponent(out UnitAsterFactory unitAsterFactory))
-                {
-                    unitAsterFactory.TestUnitAdapter3(un);
-                }
+                CreateAsteroidUnit(enterGo);
+            }
+        }
+
+        public void CreateAsteroidUnit(GameObject enterGo)
+        {
+            countCreateAsUn++;
+            var un = unitGO.CreateAsUn();
+            un.name = un.gameObject.name + $" {countCreateAsUn}";
+
+            if (enterGo.TryGetComponent(out UnitAsterFactory unitAsterFactory))
+            {
+                unitAsterFactory.TestUnitAdapter3(un);
+            }
+            if (un.TryGetComponent(out Rigidbody rigidbodyComponent))
+            {
+                rigidbodyComponent.mass = 5;
+            }
+            if (un.TryGetComponent(out PlayerPursuit playerPursuitComponent))
+            {
+                playerPursuitComponent.SetRandomSpeed(1, 3);
             }
         }
     }

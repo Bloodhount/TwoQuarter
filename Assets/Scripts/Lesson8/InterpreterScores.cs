@@ -22,7 +22,7 @@ namespace Asteroids.Interpreter
         {
             const int _maxAlphaValue = 255;
             _textAddScore.GetComponent<TextMeshProUGUI>().alpha = _maxAlphaValue;  // TODO сделать плавную смену прозрачности
-            _textAddScore.text = " + " + value;                     // Пример таймера https://www.youtube.com/watch?v=XnHpJAb7yh0&list=PLKWKqJ1bWRh72mlJX-V_mt1bItUy2aSBu&index=15
+            _textAddScore.text = "<color=yellow> + </color>" + $"<color=green> {value}</color>";                     // Пример таймера https://www.youtube.com/watch?v=XnHpJAb7yh0&list=PLKWKqJ1bWRh72mlJX-V_mt1bItUy2aSBu&index=15
 
             scores += value;
             string tmp = StringConverter(scores);
