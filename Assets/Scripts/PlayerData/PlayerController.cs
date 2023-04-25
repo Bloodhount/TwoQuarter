@@ -18,7 +18,7 @@ namespace Asteroids
         private void Start()
         {
             this.InitBehaviourStates();
-            this.SetDefaultState();
+            //  this.SetDefaultState();
 
             unlockWeapon = new UnlockWeapon(false); WeaponStateTextUpdate("Lock");
         }
@@ -72,15 +72,28 @@ namespace Asteroids
         }
         public void SetNormalState()
         {
+            GetAndShowHPvalue();
+
             var state = this.GetState<ShipNormalMove>();
             this.SetState(state);
             ShipMoveStateTextUpdate("<color=green>Normal</color>");
         }
+
         public void SetDamagedState()
         {
+            GetAndShowHPvalue();
             var state = this.GetState<ShipDamagedMove>();
             this.SetState(state);
             ShipMoveStateTextUpdate("<color=red>Damaged</color>");
+        }
+
+        private void GetAndShowHPvalue()
+        {
+            if (TryGetComponent(out PlayerHealth PlayerHealthComponent))
+            {
+                string currHP = PlayerHealthComponent.GetHPvalue().ToString();
+                TextMessager.TextMessageUpdate(">>TextMessager<<; \n <color=yellow>HP</color>:" + $"<color=red>\"{currHP}\"</color>");
+            }
         }
 
         private void ShipMoveStateTextUpdate(string text)

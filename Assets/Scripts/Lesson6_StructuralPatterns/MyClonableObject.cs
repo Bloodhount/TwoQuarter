@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Asteroids.Prototype
 {
-    public class MyClonableObject : MonoBehaviour 
-    { 
+    public class MyClonableObject : MonoBehaviour
+    {
         [SerializeField] private int _health;
         private static int _cloneCount = 0;
         public MyClonableObject Clone()
@@ -19,7 +19,7 @@ namespace Asteroids.Prototype
             if (gameObject.TryGetComponent<Transform>(out var transform))
             {
                 var newTransform = newObject.transform;
-         //       newTransform = transform + new Vector3(0,0,0);
+                //       newTransform = transform + new Vector3(0,0,0);
                 //var newTransform = newObject.AddComponent<Transform>();
                 //newTransform.transform = transform.transform;
                 //newTransform.position = transform.position;
@@ -46,7 +46,8 @@ namespace Asteroids.Prototype
             }
             if (gameObject.TryGetComponent<PlayerPursuit>(out var playerPursuit))
             {
-                var newPlayerPursuit = newObject.AddComponent< PlayerPursuit>();
+                var newPlayerPursuit = newObject.AddComponent<PlayerPursuit>();
+                newPlayerPursuit.SetRandomSpeed(44, 88);
             }
             // for example
             myClonableObject._health = _health;

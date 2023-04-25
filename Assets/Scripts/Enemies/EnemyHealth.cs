@@ -7,7 +7,7 @@ using static UnityEngine.Debug;
 
 namespace Asteroids
 {
-    public class EnemyHealth : BaseHealth, IHit
+    public class EnemyHealth : BaseHealth, IHit, IGetHPvalue
     {
         public int DamageValue { get; } = 1;
         [SerializeField] private long _minScoreValue = 33;
@@ -92,8 +92,11 @@ namespace Asteroids
                 Log("Die.getID is empty ! ");
             }
 
+            TextMessager.ClearText();
+
             gameObject.SetActive(false);
             _healthBar.gameObject.SetActive(false);
+
         }
         public void ActivateHpBar()
         {
@@ -110,6 +113,10 @@ namespace Asteroids
                 enemyHealthComponent.TakeDamage(DamageValue);
             }
             // GetComponent<EnemyAdapter>().UniversalAttack(gameObject.transform.position);
+        }
+        public int GetHPvalue()
+        {
+            return _health;
         }
     }
 }

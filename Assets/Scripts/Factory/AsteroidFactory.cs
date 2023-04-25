@@ -10,9 +10,13 @@ namespace Asteroids
     {
         [SerializeField] private T _prefab;
         [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private float SpawnPositionX = 5;
+
         public T CreateAsUn()
         {
-            Vector3 pos = new Vector3(_spawnPoint.position.x, _spawnPoint.position.y, -1);
+            var spawnPositionX = Random.Range(-SpawnPositionX, SpawnPositionX);
+            Vector3 pos = new Vector3(spawnPositionX, _spawnPoint.position.y, -1);
+            // Vector3 pos = new Vector3(_spawnPoint.position.x, _spawnPoint.position.y, -1);
             var enemy = GameObject.Instantiate(_prefab, pos, Quaternion.identity);
             enemy.gameObject.AddComponent<UnitAdapter>();
             enemy.gameObject.layer = 9; // layer = 9 = enemy
