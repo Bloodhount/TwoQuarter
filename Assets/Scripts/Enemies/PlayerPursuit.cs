@@ -21,7 +21,7 @@ namespace Asteroids
         void Start()
         {
             _textGO = GameObject.Find("Text for tests (TMP)  (2)").gameObject.GetComponent<TextMeshProUGUI>();
-            _textGO.text = $" {gameObject.name}";
+            _textGO.text = $"PlayerPursuit.Start. {gameObject.name}";
             if (TryGetComponent(out Rigidbody rigidbodyComponent))
             {
                 rigidbody = rigidbodyComponent;
@@ -41,8 +41,9 @@ namespace Asteroids
         }
 
         void Update()
-        {
-            TextMessager.TextMessageUpdate(rigidbody.velocity.ToString());
+        { // TODO relocate to other class (for example view)
+            string currHP = gameObject.GetComponent<EnemyHealth>().GetHPvalue().ToString();
+            TextMessager.TextMessageUpdate(">>TextMessager<<; \n <color=yellow>HP</color>:" + $"<color=red>\"{currHP}\"</color>");
             if (_playerTransform != null)
             {
                 Vector3 toPlayer = (_playerTransform.position - transform.position).normalized;

@@ -6,13 +6,9 @@ namespace Asteroids
 {
     public abstract class BaseHealth : MonoBehaviour
     {
-        [SerializeField] public int CurrentHealth { get; protected set; } = 2;
-        [SerializeField] public int MaxHealth { get; protected set; } = 5;
-        //public BaseHealth(int max, int current)
-        //{
-        //    MaxHealth = max;
-        //    CurrentHealth = current;
-        //}
+        public int CurrentHealth { get; protected set; } = 2;
+        public int MaxHealth { get; protected set; } = 5;
+
         public virtual (int currentHP, int maxHP) GetHP()
         {
             return (CurrentHealth, MaxHealth);

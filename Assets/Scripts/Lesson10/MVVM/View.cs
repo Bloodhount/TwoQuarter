@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore;
- using UnityEngine.UI;
+using UnityEngine.UI;
 
 namespace Mediator.MVVM
 {
+    [Serializable]
     public class View //: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _text;
-         [SerializeField] private Text _text2;
 
         private IViewModel _viewModel;
-        public void Initialize ()// (IViewModel viewModel)
+        public void Initialize(IViewModel viewModel)
         {
-           // _viewModel = viewModel;
+            _viewModel = viewModel;
 
-           // _viewModel.OnScoreChanged += OnScoreChanged;
+            _viewModel.OnScoreChanged += OnScoreChanged;
 
-          //  OnScoreChanged(_viewModel.Model.Score);
+            OnScoreChanged(_viewModel.Model.Score);
         }
 
         private void OnScoreChanged(int score)

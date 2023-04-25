@@ -90,9 +90,9 @@ namespace Facade
             var un = unitGO.CreateAsUn();
             un.name = un.gameObject.name + $" {countCreateAsUn}";
 
-            if (enterGo.TryGetComponent(out UnitAsterFactory unitAsterFactory))
+            if (enterGo.TryGetComponent(out UnitAsterFactory unitAsterFactoryComponent))
             {
-                unitAsterFactory.TestUnitAdapter3(un);
+                unitAsterFactoryComponent.TestUnitAdapter3(un);
             }
             if (un.TryGetComponent(out Rigidbody rigidbodyComponent))
             {
@@ -100,7 +100,7 @@ namespace Facade
             }
             if (un.TryGetComponent(out PlayerPursuit playerPursuitComponent))
             {
-                playerPursuitComponent.SetRandomSpeed(1, 3);
+                playerPursuitComponent.SetRandomSpeed(11, 22);
             }
         }
     }
